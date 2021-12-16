@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "698666334428",
+    "project_id": "fgmbapp",
+    "storage_bucket": "fgmbapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:698666334428:android:54758499465a14b9c6dc19",
+        "android_client_info": {
+          "package_name": "com.macvin.fgmbeducation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "698666334428-u389ot6jc5h68a4is48mu8h2q554vubh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.macvin.fgmbeducation",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "698666334428-2s6hhnbtr57cuonpiojf8a9abg67uv8f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPPVHK0Qhyh0h92jXbtGLDAbYM1DMfdxA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "698666334428-2s6hhnbtr57cuonpiojf8a9abg67uv8f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "698666334428-1bhdik5abtlp86bkntp2pgaqbctotbn0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.macvin.fgmbeducation"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
