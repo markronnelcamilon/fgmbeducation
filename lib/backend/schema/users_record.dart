@@ -49,6 +49,10 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   BuiltList<String> get subscriptions;
 
   @nullable
+  @BuiltValueField(wireName: 'active_subscription')
+  BuiltList<DocumentReference> get activeSubscription;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -62,7 +66,8 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..uid = ''
     ..displayName = ''
     ..phoneNumber = ''
-    ..subscriptions = ListBuilder();
+    ..subscriptions = ListBuilder()
+    ..activeSubscription = ListBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -105,4 +110,5 @@ Map<String, dynamic> createUsersRecordData({
           ..uid = uid
           ..displayName = displayName
           ..phoneNumber = phoneNumber
-          ..subscriptions = null));
+          ..subscriptions = null
+          ..activeSubscription = null));

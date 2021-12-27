@@ -7,7 +7,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../goal_book/goal_book_widget.dart';
-import '../main.dart';
 import '../vision_board/vision_board_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -97,18 +96,15 @@ class _SubscirptionPageWidgetState extends State<SubscirptionPageWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 2, 2, 2),
                   child: InkWell(
                     onTap: () async {
-                      final twentyonedaychallengeCreateData =
-                          createTwentyonedaychallengeRecordData(
-                        userId: currentUserUid,
-                        day1: false,
-                        day2: false,
-                        day3: false,
-                        day4: false,
-                        day5: false,
+                      final twentyOneDayChallengeCreateData =
+                          createTwentyOneDayChallengeRecordData(
+                        subscription: '21 Day Challenge',
+                        subscriptionDate: getCurrentTimestamp,
+                        user: currentUserUid,
                       );
-                      await TwentyonedaychallengeRecord.collection
+                      await TwentyOneDayChallengeRecord.collection
                           .doc()
-                          .set(twentyonedaychallengeCreateData);
+                          .set(twentyOneDayChallengeCreateData);
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -276,55 +272,44 @@ class _SubscirptionPageWidgetState extends State<SubscirptionPageWidget> {
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 2, 2, 2),
-                  child: InkWell(
-                    onTap: () async {
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              NavBarPage(initialPage: 'HomePage'),
-                        ),
-                      );
-                    },
-                    child: Card(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: Color(0xFFF5F5F5),
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 10, 0),
-                                  child: FaIcon(
-                                    FontAwesomeIcons.book,
-                                    color: FlutterFlowTheme.primaryColor,
-                                    size: 24,
-                                  ),
+                  child: Card(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    color: Color(0xFFF5F5F5),
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                                child: FaIcon(
+                                  FontAwesomeIcons.book,
+                                  color: FlutterFlowTheme.primaryColor,
+                                  size: 24,
                                 ),
-                                Text(
-                                  'Daily Financial Planner',
-                                  style: FlutterFlowTheme.bodyText1,
-                                ),
-                              ],
-                            ),
-                            Text(
-                              '12.99/year',
-                              textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.bodyText1,
-                            ),
-                          ],
-                        ),
+                              ),
+                              Text(
+                                'Daily Financial Planner',
+                                style: FlutterFlowTheme.bodyText1,
+                              ),
+                            ],
+                          ),
+                          Text(
+                            '12.99/year',
+                            textAlign: TextAlign.start,
+                            style: FlutterFlowTheme.bodyText1,
+                          ),
+                        ],
                       ),
                     ),
                   ),

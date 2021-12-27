@@ -111,15 +111,13 @@ class _UserAccountWidgetState extends State<UserAccountWidget> {
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                              child: AuthUserStreamWidget(
-                                child: Text(
-                                  currentUserEmail,
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: Color(0xFF121212),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.normal,
-                                  ),
+                              child: Text(
+                                currentUserEmail,
+                                style: FlutterFlowTheme.bodyText1.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: Color(0xFF121212),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
                                 ),
                               ),
                             ),
