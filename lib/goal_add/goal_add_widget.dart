@@ -1,10 +1,6 @@
-import '../auth/auth_util.dart';
-import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../goal_book/goal_book_widget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -106,47 +102,8 @@ class _GoalAddWidgetState extends State<GoalAddWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
               child: FFButtonWidget(
-                onPressed: () async {
-                  await showDialog(
-                    context: context,
-                    builder: (alertDialogContext) {
-                      return AlertDialog(
-                        title: Text('Add your goal'),
-                        content:
-                            Text('Are you sure you want to add your goall?'),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(alertDialogContext),
-                            child: Text('No'),
-                          ),
-                          TextButton(
-                            onPressed: () async {
-                              Navigator.pop(alertDialogContext);
-
-                              final dailyGoalBookCreateData =
-                                  createDailyGoalBookRecordData(
-                                userId: currentUserUid,
-                                subscriptionId: 'subscription001',
-                                time: getCurrentTimestamp,
-                                goal: goalTextFieldController.text,
-                              );
-                              await DailyGoalBookRecord.collection
-                                  .doc()
-                                  .set(dailyGoalBookCreateData);
-                              ;
-                            },
-                            child: Text('Yes'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                  await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => GoalBookWidget(),
-                    ),
-                  );
+                onPressed: () {
+                  print('saveGoalButton pressed ...');
                 },
                 text: 'Save',
                 options: FFButtonOptions(

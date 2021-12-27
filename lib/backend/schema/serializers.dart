@@ -1,7 +1,6 @@
 import 'package:built_value/standard_json_plugin.dart';
 
 import 'users_record.dart';
-import 'daily_goal_book_record.dart';
 import 'subscritions_type_record.dart';
 import 'twenty_one_day_challenge_record.dart';
 
@@ -15,7 +14,6 @@ const kDocumentReferenceField = 'Document__Reference__Field';
 
 @SerializersFor(const [
   UsersRecord,
-  DailyGoalBookRecord,
   SubscritionsTypeRecord,
   TwentyOneDayChallengeRecord,
 ])

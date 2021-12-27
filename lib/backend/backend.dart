@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 
 import 'schema/users_record.dart';
-import 'schema/daily_goal_book_record.dart';
 import 'schema/subscritions_type_record.dart';
 import 'schema/twenty_one_day_challenge_record.dart';
 import 'schema/serializers.dart';
@@ -15,7 +14,6 @@ export 'schema/index.dart';
 export 'schema/serializers.dart';
 
 export 'schema/users_record.dart';
-export 'schema/daily_goal_book_record.dart';
 export 'schema/subscritions_type_record.dart';
 export 'schema/twenty_one_day_challenge_record.dart';
 
@@ -24,14 +22,6 @@ Stream<List<UsersRecord>> queryUsersRecord(
         int limit = -1,
         bool singleRecord = false}) =>
     queryCollection(UsersRecord.collection, UsersRecord.serializer,
-        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
-
-Stream<List<DailyGoalBookRecord>> queryDailyGoalBookRecord(
-        {Query Function(Query) queryBuilder,
-        int limit = -1,
-        bool singleRecord = false}) =>
-    queryCollection(
-        DailyGoalBookRecord.collection, DailyGoalBookRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
 Stream<List<SubscritionsTypeRecord>> querySubscritionsTypeRecord(
