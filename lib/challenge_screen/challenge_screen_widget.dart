@@ -170,7 +170,7 @@ class _ChallengeScreenWidgetState extends State<ChallengeScreenWidget> {
                 dense: false,
                 controlAffinity: ListTileControlAffinity.leading,
               ),
-              if ((task1Value) == (true))
+              if ((task1Value) == true)
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                   child: FFButtonWidget(

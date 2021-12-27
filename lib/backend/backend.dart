@@ -6,7 +6,8 @@ import '../flutter_flow/flutter_flow_util.dart';
 
 import 'schema/users_record.dart';
 import 'schema/daily_goal_book_record.dart';
-import 'schema/twentyonedaychallenge_record.dart';
+import 'schema/subscritions_type_record.dart';
+import 'schema/twenty_one_day_challenge_record.dart';
 import 'schema/serializers.dart';
 
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,7 +16,8 @@ export 'schema/serializers.dart';
 
 export 'schema/users_record.dart';
 export 'schema/daily_goal_book_record.dart';
-export 'schema/twentyonedaychallenge_record.dart';
+export 'schema/subscritions_type_record.dart';
+export 'schema/twenty_one_day_challenge_record.dart';
 
 Stream<List<UsersRecord>> queryUsersRecord(
         {Query Function(Query) queryBuilder,
@@ -32,12 +34,20 @@ Stream<List<DailyGoalBookRecord>> queryDailyGoalBookRecord(
         DailyGoalBookRecord.collection, DailyGoalBookRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
-Stream<List<TwentyonedaychallengeRecord>> queryTwentyonedaychallengeRecord(
+Stream<List<SubscritionsTypeRecord>> querySubscritionsTypeRecord(
         {Query Function(Query) queryBuilder,
         int limit = -1,
         bool singleRecord = false}) =>
-    queryCollection(TwentyonedaychallengeRecord.collection,
-        TwentyonedaychallengeRecord.serializer,
+    queryCollection(
+        SubscritionsTypeRecord.collection, SubscritionsTypeRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Stream<List<TwentyOneDayChallengeRecord>> queryTwentyOneDayChallengeRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(TwentyOneDayChallengeRecord.collection,
+        TwentyOneDayChallengeRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
 Stream<List<T>> queryCollection<T>(

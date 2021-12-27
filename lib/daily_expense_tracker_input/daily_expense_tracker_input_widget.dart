@@ -4,6 +4,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -68,7 +69,7 @@ class _DailyExpenseTrackerInputWidgetState
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 8, 8, 8),
                       child: Text(
-                        'January 01, 2021 8AM',
+                        functions.dateToday(),
                         style: FlutterFlowTheme.bodyText1.override(
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w600,
