@@ -1,6 +1,10 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../goal_book/goal_book_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -28,10 +32,20 @@ class _GoalAddWidgetState extends State<GoalAddWidget> {
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.primaryColor,
         automaticallyImplyLeading: false,
-        leading: Icon(
-          Icons.chevron_left_rounded,
-          color: Colors.white,
-          size: 32,
+        leading: InkWell(
+          onTap: () async {
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => GoalBookWidget(),
+              ),
+            );
+          },
+          child: Icon(
+            Icons.chevron_left_rounded,
+            color: Colors.white,
+            size: 32,
+          ),
         ),
         title: Text(
           'Add Goal',
@@ -57,53 +71,93 @@ class _GoalAddWidgetState extends State<GoalAddWidget> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
-              child: TextFormField(
-                controller: goalTextFieldController,
-                obscureText: false,
-                decoration: InputDecoration(
-                  labelText: 'Add your goal...',
-                  labelStyle: FlutterFlowTheme.bodyText1.override(
+            Align(
+              alignment: AlignmentDirectional(0, 0),
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
+                child: TextFormField(
+                  controller: goalTextFieldController,
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    labelText: 'Add your goal...',
+                    labelStyle: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Lexend Deca',
+                      color: Color(0xFF121212),
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xFF898989),
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xFF898989),
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                    contentPadding:
+                        EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
+                  ),
+                  style: FlutterFlowTheme.bodyText1.override(
                     fontFamily: 'Lexend Deca',
                     color: Color(0xFF121212),
                     fontSize: 14,
                     fontWeight: FontWeight.normal,
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xFF898989),
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xFF898989),
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  contentPadding:
-                      EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
+                  textAlign: TextAlign.start,
+                  maxLines: 20,
                 ),
-                style: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Lexend Deca',
-                  color: Color(0xFF121212),
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal,
-                ),
-                textAlign: TextAlign.start,
-                maxLines: 20,
               ),
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
               child: FFButtonWidget(
-                onPressed: () {
-                  print('saveGoalButton pressed ...');
+                onPressed: () async {
+                  await showDialog(
+                    context: context,
+                    builder: (alertDialogContext) {
+                      return AlertDialog(
+                        title: Text('Win the day'),
+                        content: Text('Add this to your goal.'),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(alertDialogContext),
+                            child: Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () async {
+                              Navigator.pop(alertDialogContext);
+
+                              final goalBookCreateData =
+                                  createGoalBookRecordData(
+                                user: currentUserUid,
+                                date: getCurrentTimestamp,
+                                goal: goalTextFieldController.text,
+                              );
+                              await GoalBookRecord.collection
+                                  .doc()
+                                  .set(goalBookCreateData);
+                              ;
+                            },
+                            child: Text('Confirm'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => GoalBookWidget(),
+                    ),
+                  );
                 },
                 text: 'Save',
                 options: FFButtonOptions(

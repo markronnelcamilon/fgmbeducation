@@ -1,4 +1,4 @@
-# f_g_m_b_education
+# FGMB Education
 
 A new Flutter project.
 

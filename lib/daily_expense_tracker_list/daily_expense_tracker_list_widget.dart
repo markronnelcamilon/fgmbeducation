@@ -1,5 +1,5 @@
-import '../daily_expense_tracker/daily_expense_tracker_widget.dart';
 import '../daily_expense_tracker_input/daily_expense_tracker_input_widget.dart';
+import '../daily_financial_tracker/daily_financial_tracker_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
@@ -87,7 +87,7 @@ class _DailyExpenseTrackerListWidgetState
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DailyExpenseTrackerWidget(),
+                    builder: (context) => DailyFinancialTrackerWidget(),
                   ),
                 );
               },

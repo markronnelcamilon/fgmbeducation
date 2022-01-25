@@ -66,6 +66,11 @@ abstract class SubscritionsTypeRecord
       ref.snapshots().map(
           (s) => serializers.deserializeWith(serializer, serializedData(s)));
 
+  static Future<SubscritionsTypeRecord> getDocumentOnce(
+          DocumentReference ref) =>
+      ref.get().then(
+          (s) => serializers.deserializeWith(serializer, serializedData(s)));
+
   SubscritionsTypeRecord._();
   factory SubscritionsTypeRecord(
           [void Function(SubscritionsTypeRecordBuilder) updates]) =

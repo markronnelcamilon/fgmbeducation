@@ -2,7 +2,21 @@ import 'package:built_value/standard_json_plugin.dart';
 
 import 'users_record.dart';
 import 'subscritions_type_record.dart';
-import 'twenty_one_day_challenge_record.dart';
+import 'goal_book_record.dart';
+import 'subscription_record.dart';
+import 'twenty_one_days_challenge_record.dart';
+import 'financial_planner_record.dart';
+import 'expense_category_record.dart';
+import 'ninety_days_challenge_record.dart';
+import 'vision_board_achievement_record.dart';
+import 'vision_board_record.dart';
+import 'books_record.dart';
+import 'daily_expense_tracker_record.dart';
+import 'twenty_one_days_counter_record.dart';
+import 'task21_record.dart';
+import 'quarterly_goals_record.dart';
+import 'daily_success_planner_record.dart';
+import 'targets_record.dart';
 
 import 'index.dart';
 
@@ -15,7 +29,21 @@ const kDocumentReferenceField = 'Document__Reference__Field';
 @SerializersFor(const [
   UsersRecord,
   SubscritionsTypeRecord,
-  TwentyOneDayChallengeRecord,
+  GoalBookRecord,
+  SubscriptionRecord,
+  TwentyOneDaysChallengeRecord,
+  FinancialPlannerRecord,
+  ExpenseCategoryRecord,
+  NinetyDaysChallengeRecord,
+  VisionBoardAchievementRecord,
+  VisionBoardRecord,
+  BooksRecord,
+  DailyExpenseTrackerRecord,
+  TwentyOneDaysCounterRecord,
+  Task21Record,
+  QuarterlyGoalsRecord,
+  DailySuccessPlannerRecord,
+  TargetsRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

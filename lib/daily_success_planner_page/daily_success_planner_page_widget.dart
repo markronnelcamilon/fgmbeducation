@@ -1,14 +1,30 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
+import '../components/daily_affirmation_bs_widget.dart';
+import '../components/grateful_for_bs_widget.dart';
+import '../components/ithankgodfor_bs_widget.dart';
+import '../components/quarterly_bs_widget.dart';
+import '../components/target_details1_widget.dart';
+import '../components/target_details2_widget.dart';
+import '../components/target_details3_widget.dart';
+import '../components/target_details4_widget.dart';
+import '../components/target_details5_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_toggle_icon.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
-import 'package:easy_debounce/easy_debounce.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DailySuccessPlannerPageWidget extends StatefulWidget {
-  const DailySuccessPlannerPageWidget({Key key}) : super(key: key);
+  const DailySuccessPlannerPageWidget({
+    Key key,
+    this.dailySuccessPlannerRR,
+  }) : super(key: key);
+
+  final DocumentReference dailySuccessPlannerRR;
 
   @override
   _DailySuccessPlannerPageWidgetState createState() =>
@@ -17,235 +33,884 @@ class DailySuccessPlannerPageWidget extends StatefulWidget {
 
 class _DailySuccessPlannerPageWidgetState
     extends State<DailySuccessPlannerPageWidget> {
-  TextEditingController textController1;
-  bool checkboxListTileValue1;
-  bool checkboxListTileValue2;
-  TextEditingController textController2;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
-  void initState() {
-    super.initState();
-    textController1 = TextEditingController();
-    textController2 = TextEditingController();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.primaryColor,
-        automaticallyImplyLeading: true,
-        leading: FlutterFlowIconButton(
-          borderColor: Colors.transparent,
-          borderRadius: 30,
-          borderWidth: 1,
-          buttonSize: 60,
-          icon: Icon(
-            Icons.chevron_left,
-            color: Colors.white,
-            size: 30,
-          ),
-          onPressed: () async {
-            await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    NavBarPage(initialPage: 'SubscirptionPage'),
+    return StreamBuilder<DailySuccessPlannerRecord>(
+      stream:
+          DailySuccessPlannerRecord.getDocument(widget.dailySuccessPlannerRR),
+      builder: (context, snapshot) {
+        // Customize what your widget looks like when it's loading.
+        if (!snapshot.hasData) {
+          return Center(
+            child: SizedBox(
+              width: 50,
+              height: 50,
+              child: CircularProgressIndicator(
+                color: FlutterFlowTheme.primaryColor,
               ),
-            );
-          },
-        ),
-        title: Text(
-          'Daily Success Planner',
-          style: FlutterFlowTheme.title1.override(
-            fontFamily: 'Poppins',
-            color: Colors.white,
+            ),
+          );
+        }
+        final dailySuccessPlannerPageDailySuccessPlannerRecord = snapshot.data;
+        return Scaffold(
+          key: scaffoldKey,
+          appBar: AppBar(
+            backgroundColor: FlutterFlowTheme.primaryColor,
+            automaticallyImplyLeading: true,
+            leading: FlutterFlowIconButton(
+              borderColor: Colors.transparent,
+              borderRadius: 30,
+              borderWidth: 1,
+              buttonSize: 60,
+              icon: Icon(
+                Icons.chevron_left,
+                color: Colors.white,
+                size: 30,
+              ),
+              onPressed: () async {
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        NavBarPage(initialPage: 'SubscirptionPage'),
+                  ),
+                );
+              },
+            ),
+            title: Text(
+              'Daily Success Planner',
+              style: FlutterFlowTheme.title1.override(
+                fontFamily: 'Poppins',
+                color: Colors.white,
+              ),
+            ),
+            actions: [],
+            centerTitle: true,
+            elevation: 4,
           ),
-        ),
-        actions: [],
-        centerTitle: true,
-        elevation: 4,
-      ),
-      backgroundColor: Color(0xFF4B39EF),
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 1,
-        decoration: BoxDecoration(
-          color: Color(0xFFEEEEEE),
-        ),
-        child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-          child: SingleChildScrollView(
+          backgroundColor: FlutterFlowTheme.tertiaryColor,
+          body: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
-                  child: Row(
+                  padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
+                  child: Column(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      FlutterFlowIconButton(
-                        borderColor: Colors.transparent,
-                        borderRadius: 30,
-                        borderWidth: 1,
-                        buttonSize: 60,
-                        icon: FaIcon(
-                          FontAwesomeIcons.calendarAlt,
-                          color: FlutterFlowTheme.primaryColor,
-                          size: 30,
+                      Container(
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.tertiaryColor,
                         ),
-                        onPressed: () {
-                          print('IconButton pressed ...');
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              dateTimeFormat(
+                                  'yMMMd',
+                                  dailySuccessPlannerPageDailySuccessPlannerRecord
+                                      .date),
+                              style: FlutterFlowTheme.title3,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.tertiaryColor,
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            ToggleIcon(
+                              onPressed: () async {
+                                final dailySuccessPlannerUpdateData =
+                                    createDailySuccessPlannerRecordData(
+                                  writeDownGoals:
+                                      !dailySuccessPlannerPageDailySuccessPlannerRecord
+                                          .writeDownGoals,
+                                );
+                                await dailySuccessPlannerPageDailySuccessPlannerRecord
+                                    .reference
+                                    .update(dailySuccessPlannerUpdateData);
+                              },
+                              value:
+                                  dailySuccessPlannerPageDailySuccessPlannerRecord
+                                      .writeDownGoals,
+                              onIcon: Icon(
+                                Icons.check_box,
+                                color: Colors.black,
+                                size: 20,
+                              ),
+                              offIcon: Icon(
+                                Icons.check_box_outline_blank,
+                                color: Colors.black,
+                                size: 20,
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                              child: Text(
+                                'Do you write down your goals?',
+                                style: FlutterFlowTheme.bodyText1.override(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.tertiaryColor,
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            ToggleIcon(
+                              onPressed: () async {
+                                final dailySuccessPlannerUpdateData =
+                                    createDailySuccessPlannerRecordData(
+                                  readTenPages:
+                                      !dailySuccessPlannerPageDailySuccessPlannerRecord
+                                          .readTenPages,
+                                );
+                                await dailySuccessPlannerPageDailySuccessPlannerRecord
+                                    .reference
+                                    .update(dailySuccessPlannerUpdateData);
+                              },
+                              value:
+                                  dailySuccessPlannerPageDailySuccessPlannerRecord
+                                      .readTenPages,
+                              onIcon: Icon(
+                                Icons.check_box,
+                                color: Colors.black,
+                                size: 20,
+                              ),
+                              offIcon: Icon(
+                                Icons.check_box_outline_blank,
+                                color: Colors.black,
+                                size: 20,
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                              child: Text(
+                                'Did you read 10 pages of a book today?',
+                                style: FlutterFlowTheme.bodyText1.override(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      StreamBuilder<List<QuarterlyGoalsRecord>>(
+                        stream: queryQuarterlyGoalsRecord(
+                          queryBuilder: (quarterlyGoalsRecord) =>
+                              quarterlyGoalsRecord
+                                  .where('uid', isEqualTo: currentUserUid)
+                                  .orderBy('quarter'),
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50,
+                                height: 50,
+                                child: CircularProgressIndicator(
+                                  color: FlutterFlowTheme.primaryColor,
+                                ),
+                              ),
+                            );
+                          }
+                          List<QuarterlyGoalsRecord>
+                              rowQuarterlyGoalsRecordList = snapshot.data;
+                          if (rowQuarterlyGoalsRecordList.isEmpty) {
+                            return Center(
+                              child: Image.asset(
+                                'assets/images/Untitled_design_(6).png',
+                              ),
+                            );
+                          }
+                          return SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: List.generate(
+                                  rowQuarterlyGoalsRecordList.length,
+                                  (rowIndex) {
+                                final rowQuarterlyGoalsRecord =
+                                    rowQuarterlyGoalsRecordList[rowIndex];
+                                return InkWell(
+                                  onTap: () async {
+                                    await showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      context: context,
+                                      builder: (context) {
+                                        return Padding(
+                                          padding:
+                                              MediaQuery.of(context).viewInsets,
+                                          child: QuarterlyBsWidget(
+                                            quarterlyGoalReference:
+                                                rowQuarterlyGoalsRecord
+                                                    .reference,
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.23,
+                                    height: 120,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.tertiaryColor,
+                                    ),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          context: context,
+                                          builder: (context) {
+                                            return Padding(
+                                              padding: MediaQuery.of(context)
+                                                  .viewInsets,
+                                              child: QuarterlyBsWidget(
+                                                quarterlyGoalReference:
+                                                    rowQuarterlyGoalsRecord
+                                                        .reference,
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                      child: Card(
+                                        clipBehavior:
+                                            Clip.antiAliasWithSaveLayer,
+                                        color: Color(0xFF388E3C),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10, 10, 10, 10),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                rowQuarterlyGoalsRecord.label,
+                                                textAlign: TextAlign.center,
+                                                style: FlutterFlowTheme
+                                                    .subtitle2
+                                                    .override(
+                                                  fontFamily: 'Poppins',
+                                                  color: FlutterFlowTheme
+                                                      .tertiaryColor,
+                                                  fontSize: 8,
+                                                ),
+                                              ),
+                                              Text(
+                                                rowQuarterlyGoalsRecord.goals,
+                                                style: FlutterFlowTheme
+                                                    .bodyText1
+                                                    .override(
+                                                  fontFamily: 'Poppins',
+                                                  color: FlutterFlowTheme
+                                                      .tertiaryColor,
+                                                  fontSize: 10,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }),
+                            ),
+                          );
                         },
                       ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.tertiaryColor,
+                        ),
+                        child: InkWell(
+                          onTap: () async {
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              context: context,
+                              builder: (context) {
+                                return Padding(
+                                  padding: MediaQuery.of(context).viewInsets,
+                                  child: GratefulForBsWidget(
+                                    gratefulReference:
+                                        dailySuccessPlannerPageDailySuccessPlannerRecord
+                                            .reference,
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          child: Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: Color(0xFF009688),
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10, 10, 10, 10),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'GRATEFUL FOR',
+                                    style: FlutterFlowTheme.subtitle1.override(
+                                      fontFamily: 'Poppins',
+                                      color: FlutterFlowTheme.tertiaryColor,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  Text(
+                                    dailySuccessPlannerPageDailySuccessPlannerRecord
+                                        .gratefulFor,
+                                    style: FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
+                        child: Text(
+                          'TARGETS: Targets are designed to get you closer to achieving your goals',
+                          textAlign: TextAlign.center,
+                          style: FlutterFlowTheme.bodyText2.override(
+                            fontFamily: 'Poppins',
+                            color: FlutterFlowTheme.primaryColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          InkWell(
+                            onTap: () async {
+                              await showModalBottomSheet(
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (context) {
+                                  return Padding(
+                                    padding: MediaQuery.of(context).viewInsets,
+                                    child: TargetDetails1Widget(
+                                      targetDetail1:
+                                          dailySuccessPlannerPageDailySuccessPlannerRecord,
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                ToggleIcon(
+                                  onPressed: () async {
+                                    final dailySuccessPlannerUpdateData =
+                                        createDailySuccessPlannerRecordData(
+                                      task01:
+                                          !dailySuccessPlannerPageDailySuccessPlannerRecord
+                                              .task01,
+                                    );
+                                    await dailySuccessPlannerPageDailySuccessPlannerRecord
+                                        .reference
+                                        .update(dailySuccessPlannerUpdateData);
+                                  },
+                                  value:
+                                      dailySuccessPlannerPageDailySuccessPlannerRecord
+                                          .task01,
+                                  onIcon: Icon(
+                                    Icons.check_box,
+                                    color: Colors.black,
+                                    size: 25,
+                                  ),
+                                  offIcon: Icon(
+                                    Icons.check_box_outline_blank,
+                                    color: Colors.black,
+                                    size: 25,
+                                  ),
+                                ),
+                                Text(
+                                  dailySuccessPlannerPageDailySuccessPlannerRecord
+                                      .targetDetail01,
+                                  style: FlutterFlowTheme.bodyText1,
+                                ),
+                              ],
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              await showModalBottomSheet(
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (context) {
+                                  return Padding(
+                                    padding: MediaQuery.of(context).viewInsets,
+                                    child: TargetDetails2Widget(
+                                      targetDetail2:
+                                          dailySuccessPlannerPageDailySuccessPlannerRecord,
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                ToggleIcon(
+                                  onPressed: () async {
+                                    final dailySuccessPlannerUpdateData =
+                                        createDailySuccessPlannerRecordData(
+                                      task02:
+                                          !dailySuccessPlannerPageDailySuccessPlannerRecord
+                                              .task02,
+                                    );
+                                    await dailySuccessPlannerPageDailySuccessPlannerRecord
+                                        .reference
+                                        .update(dailySuccessPlannerUpdateData);
+                                  },
+                                  value:
+                                      dailySuccessPlannerPageDailySuccessPlannerRecord
+                                          .task02,
+                                  onIcon: Icon(
+                                    Icons.check_box,
+                                    color: Colors.black,
+                                    size: 25,
+                                  ),
+                                  offIcon: Icon(
+                                    Icons.check_box_outline_blank,
+                                    color: Colors.black,
+                                    size: 25,
+                                  ),
+                                ),
+                                Text(
+                                  dailySuccessPlannerPageDailySuccessPlannerRecord
+                                      .targetDetail02,
+                                  style: FlutterFlowTheme.bodyText1,
+                                ),
+                              ],
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              await showModalBottomSheet(
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (context) {
+                                  return Padding(
+                                    padding: MediaQuery.of(context).viewInsets,
+                                    child: TargetDetails3Widget(
+                                      targetDetail3:
+                                          dailySuccessPlannerPageDailySuccessPlannerRecord,
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                ToggleIcon(
+                                  onPressed: () async {
+                                    final dailySuccessPlannerUpdateData =
+                                        createDailySuccessPlannerRecordData(
+                                      task03:
+                                          !dailySuccessPlannerPageDailySuccessPlannerRecord
+                                              .task03,
+                                    );
+                                    await dailySuccessPlannerPageDailySuccessPlannerRecord
+                                        .reference
+                                        .update(dailySuccessPlannerUpdateData);
+                                  },
+                                  value:
+                                      dailySuccessPlannerPageDailySuccessPlannerRecord
+                                          .task03,
+                                  onIcon: Icon(
+                                    Icons.check_box,
+                                    color: Colors.black,
+                                    size: 25,
+                                  ),
+                                  offIcon: Icon(
+                                    Icons.check_box_outline_blank,
+                                    color: Colors.black,
+                                    size: 25,
+                                  ),
+                                ),
+                                Text(
+                                  dailySuccessPlannerPageDailySuccessPlannerRecord
+                                      .targetDetail03,
+                                  style: FlutterFlowTheme.bodyText1,
+                                ),
+                              ],
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              await showModalBottomSheet(
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (context) {
+                                  return Padding(
+                                    padding: MediaQuery.of(context).viewInsets,
+                                    child: TargetDetails4Widget(
+                                      targetDetail4:
+                                          dailySuccessPlannerPageDailySuccessPlannerRecord,
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                ToggleIcon(
+                                  onPressed: () async {
+                                    final dailySuccessPlannerUpdateData =
+                                        createDailySuccessPlannerRecordData(
+                                      task04:
+                                          !dailySuccessPlannerPageDailySuccessPlannerRecord
+                                              .task04,
+                                    );
+                                    await dailySuccessPlannerPageDailySuccessPlannerRecord
+                                        .reference
+                                        .update(dailySuccessPlannerUpdateData);
+                                  },
+                                  value:
+                                      dailySuccessPlannerPageDailySuccessPlannerRecord
+                                          .task04,
+                                  onIcon: Icon(
+                                    Icons.check_box,
+                                    color: Colors.black,
+                                    size: 25,
+                                  ),
+                                  offIcon: Icon(
+                                    Icons.check_box_outline_blank,
+                                    color: Colors.black,
+                                    size: 25,
+                                  ),
+                                ),
+                                Text(
+                                  dailySuccessPlannerPageDailySuccessPlannerRecord
+                                      .targetDetail04,
+                                  style: FlutterFlowTheme.bodyText1,
+                                ),
+                              ],
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              await showModalBottomSheet(
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (context) {
+                                  return Padding(
+                                    padding: MediaQuery.of(context).viewInsets,
+                                    child: TargetDetails5Widget(
+                                      targetDetail5:
+                                          dailySuccessPlannerPageDailySuccessPlannerRecord,
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                ToggleIcon(
+                                  onPressed: () async {
+                                    final dailySuccessPlannerUpdateData =
+                                        createDailySuccessPlannerRecordData(
+                                      task05:
+                                          !dailySuccessPlannerPageDailySuccessPlannerRecord
+                                              .task05,
+                                    );
+                                    await dailySuccessPlannerPageDailySuccessPlannerRecord
+                                        .reference
+                                        .update(dailySuccessPlannerUpdateData);
+                                  },
+                                  value:
+                                      dailySuccessPlannerPageDailySuccessPlannerRecord
+                                          .task05,
+                                  onIcon: Icon(
+                                    Icons.check_box,
+                                    color: Colors.black,
+                                    size: 25,
+                                  ),
+                                  offIcon: Icon(
+                                    Icons.check_box_outline_blank,
+                                    color: Colors.black,
+                                    size: 25,
+                                  ),
+                                ),
+                                Text(
+                                  dailySuccessPlannerPageDailySuccessPlannerRecord
+                                      .targetDetail05,
+                                  style: FlutterFlowTheme.bodyText1,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
+                        child: Text(
+                          'TODAYS PLAN',
+                          textAlign: TextAlign.center,
+                          style: FlutterFlowTheme.bodyText2.override(
+                            fontFamily: 'Poppins',
+                            color: FlutterFlowTheme.primaryColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFEEEEEE),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.tertiaryColor,
+                        ),
+                        child: InkWell(
+                          onTap: () async {
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              context: context,
+                              builder: (context) {
+                                return Padding(
+                                  padding: MediaQuery.of(context).viewInsets,
+                                  child: IthankgodforBsWidget(
+                                    gratefulReference:
+                                        dailySuccessPlannerPageDailySuccessPlannerRecord
+                                            .reference,
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          child: Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: Color(0xFFFC5252),
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10, 10, 10, 10),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'I THANK GOD FOR',
+                                    style: FlutterFlowTheme.subtitle1.override(
+                                      fontFamily: 'Poppins',
+                                      color: FlutterFlowTheme.tertiaryColor,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  Text(
+                                    dailySuccessPlannerPageDailySuccessPlannerRecord
+                                        .iThankGodFor,
+                                    style: FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.tertiaryColor,
+                        ),
+                        child: InkWell(
+                          onTap: () async {
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              context: context,
+                              builder: (context) {
+                                return Padding(
+                                  padding: MediaQuery.of(context).viewInsets,
+                                  child: DailyAffirmationBsWidget(
+                                    gratefulReference:
+                                        dailySuccessPlannerPageDailySuccessPlannerRecord
+                                            .reference,
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          child: Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: Color(0xFFFFC107),
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10, 10, 10, 10),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'DAILY AFFIRMATION',
+                                    style: FlutterFlowTheme.subtitle1.override(
+                                      fontFamily: 'Poppins',
+                                      color: FlutterFlowTheme.tertiaryColor,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  Text(
+                                    dailySuccessPlannerPageDailySuccessPlannerRecord
+                                        .gratefulFor,
+                                    style: FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.tertiaryColor,
+                        ),
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: Color(0xFF00695C),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      'DID YOU WIN THE DAY?',
+                                      style:
+                                          FlutterFlowTheme.subtitle1.override(
+                                        fontFamily: 'Poppins',
+                                        color: FlutterFlowTheme.tertiaryColor,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    ToggleIcon(
+                                      onPressed: () async {
+                                        final dailySuccessPlannerUpdateData =
+                                            createDailySuccessPlannerRecordData(
+                                          didWinTheDay:
+                                              !dailySuccessPlannerPageDailySuccessPlannerRecord
+                                                  .didWinTheDay,
+                                        );
+                                        await dailySuccessPlannerPageDailySuccessPlannerRecord
+                                            .reference
+                                            .update(
+                                                dailySuccessPlannerUpdateData);
+                                      },
+                                      value:
+                                          dailySuccessPlannerPageDailySuccessPlannerRecord
+                                              .didWinTheDay,
+                                      onIcon: Icon(
+                                        Icons.check_box,
+                                        color: FlutterFlowTheme.tertiaryColor,
+                                        size: 20,
+                                      ),
+                                      offIcon: Icon(
+                                        Icons.check_box_outline_blank,
+                                        color: FlutterFlowTheme.tertiaryColor,
+                                        size: 25,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Text(
+                                  'Answer yes only if you  1. Write down your goal 2. Rewrote your quarterly goal  3. Completed all your targets',
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.bodyText1.override(
+                                    fontFamily: 'Poppins',
+                                    color: Color(0xFFF5F5F5),
+                                    fontSize: 8,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
-                  ),
-                ),
-                CheckboxListTile(
-                  value: checkboxListTileValue1 ??= false,
-                  onChanged: (newValue) =>
-                      setState(() => checkboxListTileValue1 = newValue),
-                  title: Text(
-                    'Did you write down your goals',
-                    style: FlutterFlowTheme.bodyText1.override(
-                      fontFamily: 'Poppins',
-                      fontSize: 10,
-                    ),
-                  ),
-                  tileColor: Color(0xFFF5F5F5),
-                  dense: false,
-                  controlAffinity: ListTileControlAffinity.trailing,
-                ),
-                CheckboxListTile(
-                  value: checkboxListTileValue2 ??= false,
-                  onChanged: (newValue) =>
-                      setState(() => checkboxListTileValue2 = newValue),
-                  title: Text(
-                    'Did you read 10 pages of the book today?',
-                    style: FlutterFlowTheme.bodyText1.override(
-                      fontFamily: 'Poppins',
-                      fontSize: 10,
-                    ),
-                  ),
-                  tileColor: Color(0xFFF5F5F5),
-                  dense: false,
-                  controlAffinity: ListTileControlAffinity.trailing,
-                ),
-                TextFormField(
-                  onChanged: (_) => EasyDebounce.debounce(
-                    'textController1',
-                    Duration(milliseconds: 2000),
-                    () => setState(() {}),
-                  ),
-                  controller: textController1,
-                  obscureText: false,
-                  decoration: InputDecoration(
-                    hintText: 'QUARTERLY GOALS',
-                    hintStyle: FlutterFlowTheme.bodyText1.override(
-                      fontFamily: 'Poppins',
-                      fontSize: 12,
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0x00000000),
-                        width: 1,
-                      ),
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(4.0),
-                        topRight: Radius.circular(4.0),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0x00000000),
-                        width: 1,
-                      ),
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(4.0),
-                        topRight: Radius.circular(4.0),
-                      ),
-                    ),
-                    suffixIcon: textController1.text.isNotEmpty
-                        ? InkWell(
-                            onTap: () => setState(
-                              () => textController1.clear(),
-                            ),
-                            child: Icon(
-                              Icons.clear,
-                              color: Color(0xFF757575),
-                              size: 22,
-                            ),
-                          )
-                        : null,
-                  ),
-                  style: FlutterFlowTheme.bodyText1.override(
-                    fontFamily: 'Poppins',
-                    fontSize: 12,
-                  ),
-                ),
-                TextFormField(
-                  onChanged: (_) => EasyDebounce.debounce(
-                    'textController2',
-                    Duration(milliseconds: 2000),
-                    () => setState(() {}),
-                  ),
-                  controller: textController2,
-                  obscureText: false,
-                  decoration: InputDecoration(
-                    hintText: 'GREATFUL FOR',
-                    hintStyle: FlutterFlowTheme.bodyText1.override(
-                      fontFamily: 'Poppins',
-                      fontSize: 12,
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0x00000000),
-                        width: 1,
-                      ),
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(4.0),
-                        topRight: Radius.circular(4.0),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0x00000000),
-                        width: 1,
-                      ),
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(4.0),
-                        topRight: Radius.circular(4.0),
-                      ),
-                    ),
-                    suffixIcon: textController2.text.isNotEmpty
-                        ? InkWell(
-                            onTap: () => setState(
-                              () => textController2.clear(),
-                            ),
-                            child: Icon(
-                              Icons.clear,
-                              color: Color(0xFF757575),
-                              size: 22,
-                            ),
-                          )
-                        : null,
-                  ),
-                  style: FlutterFlowTheme.bodyText1.override(
-                    fontFamily: 'Poppins',
-                    fontSize: 12,
                   ),
                 ),
               ],
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

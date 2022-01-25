@@ -8,9 +8,12 @@ import 'auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import 'package:f_g_m_b_education/log_in_page/log_in_page_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'home_page/home_page_widget.dart';
 import 'subscirption_page/subscirption_page_widget.dart';
 import 'user_account/user_account_widget.dart';
+import 'book_list/book_list_widget.dart';
+import 'daily_success_planner_page/daily_success_planner_page_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -100,10 +103,21 @@ class _NavBarPageState extends State<NavBarPage> {
       'HomePage': HomePageWidget(),
       'SubscirptionPage': SubscirptionPageWidget(),
       'UserAccount': UserAccountWidget(),
+      'BookList': BookListWidget(),
+      'DailySuccessPlannerPage': DailySuccessPlannerPageWidget(),
     };
+    final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
       body: tabs[_currentPage],
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
+        backgroundColor: Color(0xFFCFB53B),
+        selectedItemColor: Color(0xFFF5F5F5),
+        unselectedItemColor: Colors.black,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
@@ -132,16 +146,24 @@ class _NavBarPageState extends State<NavBarPage> {
             ),
             label: 'Home',
             tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.book_sharp,
+              size: 24,
+            ),
+            label: 'Home',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.book,
+              size: 24,
+            ),
+            label: 'Home',
+            tooltip: '',
           )
         ],
-        backgroundColor: Colors.white,
-        currentIndex: tabs.keys.toList().indexOf(_currentPage),
-        selectedItemColor: FlutterFlowTheme.primaryColor,
-        unselectedItemColor: Color(0x8A000000),
-        onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        type: BottomNavigationBarType.fixed,
       ),
     );
   }

@@ -46,11 +46,11 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   String get phoneNumber;
 
   @nullable
-  BuiltList<String> get subscriptions;
+  DocumentReference get subscriptions;
 
   @nullable
-  @BuiltValueField(wireName: 'active_subscription')
-  BuiltList<DocumentReference> get activeSubscription;
+  @BuiltValueField(wireName: 'subscription_list')
+  BuiltList<String> get subscriptionList;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -66,8 +66,7 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..uid = ''
     ..displayName = ''
     ..phoneNumber = ''
-    ..subscriptions = ListBuilder()
-    ..activeSubscription = ListBuilder();
+    ..subscriptionList = ListBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -75,6 +74,10 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   static Stream<UsersRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
       .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
+
+  static Future<UsersRecord> getDocumentOnce(DocumentReference ref) => ref
+      .get()
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
 
   UsersRecord._();
   factory UsersRecord([void Function(UsersRecordBuilder) updates]) =
@@ -96,6 +99,7 @@ Map<String, dynamic> createUsersRecordData({
   String uid,
   String displayName,
   String phoneNumber,
+  DocumentReference subscriptions,
 }) =>
     serializers.toFirestore(
         UsersRecord.serializer,
@@ -110,5 +114,5 @@ Map<String, dynamic> createUsersRecordData({
           ..uid = uid
           ..displayName = displayName
           ..phoneNumber = phoneNumber
-          ..subscriptions = null
-          ..activeSubscription = null));
+          ..subscriptions = subscriptions
+          ..subscriptionList = null));

@@ -1,8 +1,11 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../goal_add/goal_add_widget.dart';
+import '../goal_book_detail/goal_book_detail_widget.dart';
 import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -157,40 +160,80 @@ class _GoalBookWidgetState extends State<GoalBookWidget> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                 ),
-                child: ListView(
-                  padding: EdgeInsets.zero,
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                      child: Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: Colors.white,
-                        child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'January 1, 2022',
-                                style: FlutterFlowTheme.bodyText2.override(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 12,
-                                ),
-                              ),
-                              Text(
-                                'Goal',
-                                style: FlutterFlowTheme.bodyText1,
-                              ),
-                            ],
+                child: StreamBuilder<List<GoalBookRecord>>(
+                  stream: queryGoalBookRecord(
+                    queryBuilder: (goalBookRecord) =>
+                        goalBookRecord.where('user', isEqualTo: currentUserUid),
+                  ),
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: CircularProgressIndicator(
+                            color: FlutterFlowTheme.primaryColor,
                           ),
                         ),
-                      ),
-                    ),
-                  ],
+                      );
+                    }
+                    List<GoalBookRecord> listViewGoalBookRecordList =
+                        snapshot.data;
+                    return ListView.builder(
+                      padding: EdgeInsets.zero,
+                      scrollDirection: Axis.vertical,
+                      itemCount: listViewGoalBookRecordList.length,
+                      itemBuilder: (context, listViewIndex) {
+                        final listViewGoalBookRecord =
+                            listViewGoalBookRecordList[listViewIndex];
+                        return Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                          child: InkWell(
+                            onTap: () async {
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => GoalBookDetailWidget(
+                                    goalDetailScreen:
+                                        listViewGoalBookRecord.reference,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Card(
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              color: Colors.white,
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10, 10, 10, 10),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      dateTimeFormat(
+                                          'yMMMd', listViewGoalBookRecord.date),
+                                      style:
+                                          FlutterFlowTheme.bodyText2.override(
+                                        fontFamily: 'Poppins',
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                    Text(
+                                      listViewGoalBookRecord.goal,
+                                      style: FlutterFlowTheme.bodyText1,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
                 ),
               ),
             ],

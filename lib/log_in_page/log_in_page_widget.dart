@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../complete_profile/complete_profile_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -6,6 +7,7 @@ import '../main.dart';
 import '../register/register_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LogInPageWidget extends StatefulWidget {
@@ -270,6 +272,85 @@ class _LogInPageWidgetState extends State<LogInPageWidget> {
                           color: FlutterFlowTheme.secondaryColor,
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      InkWell(
+                        onTap: () async {
+                          final user = await signInWithGoogle(context);
+                          if (user == null) {
+                            return;
+                          }
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CompleteProfileWidget(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Color(0xFF090F13),
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 5,
+                                color: Color(0x3314181B),
+                                offset: Offset(0, 2),
+                              )
+                            ],
+                            shape: BoxShape.circle,
+                          ),
+                          alignment: AlignmentDirectional(0, 0),
+                          child: FaIcon(
+                            FontAwesomeIcons.google,
+                            color: Colors.white,
+                            size: 24,
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          final user = await signInWithApple(context);
+                          if (user == null) {
+                            return;
+                          }
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CompleteProfileWidget(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Color(0xFF090F13),
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 5,
+                                color: Color(0x3314181B),
+                                offset: Offset(0, 2),
+                              )
+                            ],
+                            shape: BoxShape.circle,
+                          ),
+                          alignment: AlignmentDirectional(0, 0),
+                          child: FaIcon(
+                            FontAwesomeIcons.apple,
+                            color: Colors.white,
+                            size: 24,
+                          ),
                         ),
                       ),
                     ],

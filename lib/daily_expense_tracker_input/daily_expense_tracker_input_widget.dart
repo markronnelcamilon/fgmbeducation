@@ -1,10 +1,14 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
+import '../daily_financial_tracker/daily_financial_tracker_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
+import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
-import '../flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,7 +26,7 @@ class _DailyExpenseTrackerInputWidgetState
   String dropDownValue;
   TextEditingController textController1;
   TextEditingController textController2;
-  String radioButtonValue;
+  String wantsOrNeedsValue;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -39,28 +43,46 @@ class _DailyExpenseTrackerInputWidgetState
       key: formKey,
       child: Scaffold(
         key: scaffoldKey,
+        appBar: AppBar(
+          backgroundColor: FlutterFlowTheme.primaryColor,
+          automaticallyImplyLeading: true,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30,
+            borderWidth: 1,
+            buttonSize: 60,
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+              size: 30,
+            ),
+            onPressed: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DailyFinancialTrackerWidget(),
+                ),
+              );
+            },
+          ),
+          title: Text(
+            'Input Expenses',
+            style: FlutterFlowTheme.title3.override(
+              fontFamily: 'Poppins',
+              color: FlutterFlowTheme.tertiaryColor,
+            ),
+          ),
+          actions: [],
+          centerTitle: true,
+          elevation: 4,
+        ),
         backgroundColor: Color(0xFFF5F5F5),
         body: SafeArea(
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Input Expenses',
-                        style: FlutterFlowTheme.title2,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -69,7 +91,7 @@ class _DailyExpenseTrackerInputWidgetState
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 8, 8, 8),
                       child: Text(
-                        functions.dateToday(),
+                        'January 10, 2022',
                         style: FlutterFlowTheme.bodyText1.override(
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w600,
@@ -169,7 +191,13 @@ class _DailyExpenseTrackerInputWidgetState
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: FlutterFlowDropDown(
-                              options: ['Category', 'Food', 'Shelter'].toList(),
+                              initialOption: dropDownValue ??= 'Category',
+                              options: [
+                                'Foods',
+                                'Clothes',
+                                'Sneakers',
+                                'Transportation'
+                              ].toList(),
                               onChanged: (val) =>
                                   setState(() => dropDownValue = val),
                               width: 130,
@@ -276,7 +304,7 @@ class _DailyExpenseTrackerInputWidgetState
                           child: FlutterFlowRadioButton(
                             options: ['Wants', 'Needs'],
                             onChanged: (value) {
-                              setState(() => radioButtonValue = value);
+                              setState(() => wantsOrNeedsValue = value);
                             },
                             optionHeight: 60,
                             textStyle: FlutterFlowTheme.bodyText1.override(
@@ -341,8 +369,22 @@ class _DailyExpenseTrackerInputWidgetState
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                       child: FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
+                        onPressed: () async {
+                          if (!formKey.currentState.validate()) {
+                            return;
+                          }
+                          final financialPlannerCreateData =
+                              createFinancialPlannerRecordData(
+                            uid: currentUserUid,
+                            description: textController1.text,
+                            category: dropDownValue,
+                            amount: double.parse(textController2.text),
+                            date: getCurrentTimestamp,
+                            wantsNeeds: wantsOrNeedsValue,
+                          );
+                          await FinancialPlannerRecord.collection
+                              .doc()
+                              .set(financialPlannerCreateData);
                         },
                         text: 'Save',
                         options: FFButtonOptions(

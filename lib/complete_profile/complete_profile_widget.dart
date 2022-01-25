@@ -370,6 +370,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                                         createdTime: getCurrentTimestamp,
                                         uid: currentUserUid,
                                         displayName: userNameController.text,
+                                        image: uploadedFileUrl,
                                       );
                                       await currentUserReference
                                           .update(usersUpdateData);
