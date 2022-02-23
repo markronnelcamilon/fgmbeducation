@@ -4,6 +4,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DailyExpenseTrackerListWidget extends StatefulWidget {
@@ -23,7 +24,7 @@ class _DailyExpenseTrackerListWidgetState
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.primaryColor,
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
@@ -42,12 +43,12 @@ class _DailyExpenseTrackerListWidgetState
         ),
         title: Text(
           'Daily Expense Traker',
-          style: FlutterFlowTheme.title2.override(
-            fontFamily: 'Lexend Deca',
-            color: Colors.white,
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-          ),
+          style: FlutterFlowTheme.of(context).title2.override(
+                fontFamily: 'Lexend Deca',
+                color: Colors.white,
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
         ),
         actions: [],
         centerTitle: false,
@@ -62,17 +63,17 @@ class _DailyExpenseTrackerListWidgetState
             ),
           );
         },
-        backgroundColor: FlutterFlowTheme.primaryColor,
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         icon: Icon(
           Icons.add,
         ),
         elevation: 8,
         label: Text(
           'Add ',
-          style: FlutterFlowTheme.bodyText1.override(
-            fontFamily: 'Poppins',
-            color: Colors.white,
-          ),
+          style: FlutterFlowTheme.of(context).bodyText1.override(
+                fontFamily: 'Poppins',
+                color: Colors.white,
+              ),
         ),
       ),
       body: Container(
@@ -94,10 +95,10 @@ class _DailyExpenseTrackerListWidgetState
               child: ListTile(
                 title: Text(
                   'January 01, 2021',
-                  style: FlutterFlowTheme.title3.override(
-                    fontFamily: 'Poppins',
-                    fontSize: 14,
-                  ),
+                  style: FlutterFlowTheme.of(context).title3.override(
+                        fontFamily: 'Poppins',
+                        fontSize: 14,
+                      ),
                 ),
                 trailing: Icon(
                   Icons.arrow_forward_ios,

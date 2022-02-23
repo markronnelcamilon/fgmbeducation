@@ -5,15 +5,18 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'auth/firebase_user_provider.dart';
 import 'auth/auth_util.dart';
 
-import '../flutter_flow/flutter_flow_theme.dart';
+import 'flutter_flow/flutter_flow_theme.dart';
+import 'flutter_flow/internationalization.dart';
 import 'package:f_g_m_b_education/log_in_page/log_in_page_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'home_page/home_page_widget.dart';
 import 'subscirption_page/subscirption_page_widget.dart';
-import 'user_account/user_account_widget.dart';
 import 'book_list/book_list_widget.dart';
-import 'daily_success_planner_page/daily_success_planner_page_widget.dart';
+import 'calculator/calculator_widget.dart';
+import 'user_account/user_account_widget.dart';
+import 'course_main_page/course_main_page_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,13 +29,23 @@ class MyApp extends StatefulWidget {
   // This widget is the root of your application.
   @override
   _MyAppState createState() => _MyAppState();
+
+  static _MyAppState of(BuildContext context) =>
+      context.findAncestorStateOfType<_MyAppState>();
 }
 
 class _MyAppState extends State<MyApp> {
+  Locale _locale;
+  ThemeMode _themeMode = ThemeMode.system;
   Stream<FGMBEducationFirebaseUser> userStream;
   FGMBEducationFirebaseUser initialUser;
   bool displaySplashImage = true;
   final authUserSub = authenticatedUserStream.listen((_) {});
+
+  void setLocale(Locale value) => setState(() => _locale = value);
+  void setThemeMode(ThemeMode mode) => setState(() {
+        _themeMode = mode;
+      });
 
   @override
   void initState() {
@@ -55,19 +68,26 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'FGMB Education',
       localizationsDelegates: [
+        FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      locale: _locale,
       supportedLocales: const [Locale('en', '')],
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(brightness: Brightness.light),
+      themeMode: _themeMode,
       home: initialUser == null || displaySplashImage
           ? Container(
               color: Colors.transparent,
-              child: Builder(
-                builder: (context) => Image.asset(
-                  'assets/images/fgmbeducation.png',
-                  fit: BoxFit.contain,
+              child: Center(
+                child: Builder(
+                  builder: (context) => Image.asset(
+                    'assets/images/fgmbeducation.png',
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             )
@@ -102,9 +122,10 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'HomePage': HomePageWidget(),
       'SubscirptionPage': SubscirptionPageWidget(),
-      'UserAccount': UserAccountWidget(),
       'BookList': BookListWidget(),
-      'DailySuccessPlannerPage': DailySuccessPlannerPageWidget(),
+      'Calculator': CalculatorWidget(),
+      'UserAccount': UserAccountWidget(),
+      'CourseMainPage': CourseMainPageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -115,10 +136,10 @@ class _NavBarPageState extends State<NavBarPage> {
         backgroundColor: Color(0xFFCFB53B),
         selectedItemColor: Color(0xFFF5F5F5),
         unselectedItemColor: Colors.black,
-        showSelectedLabels: false,
+        showSelectedLabels: true,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home_outlined,
@@ -137,6 +158,22 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
+              Icons.book_sharp,
+              size: 24,
+            ),
+            label: 'Home',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.calculate,
+              size: 24,
+            ),
+            label: 'Home',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
               Icons.person_outlined,
               size: 24,
             ),
@@ -149,18 +186,10 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.book_sharp,
+              Icons.ondemand_video,
               size: 24,
             ),
-            label: 'Home',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.book,
-              size: 24,
-            ),
-            label: 'Home',
+            label: 'Course',
             tooltip: '',
           )
         ],

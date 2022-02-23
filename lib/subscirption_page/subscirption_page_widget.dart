@@ -13,6 +13,7 @@ import '../vision_board/vision_board_widget.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -75,11 +76,12 @@ class _SubscirptionPageWidgetState extends State<SubscirptionPageWidget> {
                     options: FFButtonOptions(
                       width: double.infinity,
                       height: 60,
-                      color: FlutterFlowTheme.primaryColor,
-                      textStyle: FlutterFlowTheme.subtitle2.override(
-                        fontFamily: 'Poppins',
-                        color: Colors.white,
-                      ),
+                      color: FlutterFlowTheme.of(context).primaryColor,
+                      textStyle:
+                          FlutterFlowTheme.of(context).subtitle2.override(
+                                fontFamily: 'Poppins',
+                                color: Colors.white,
+                              ),
                       borderSide: BorderSide(
                         color: Colors.transparent,
                         width: 1,
@@ -92,7 +94,7 @@ class _SubscirptionPageWidgetState extends State<SubscirptionPageWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 5),
                   child: Text(
                     'MILLIONAIRES SUCCESS HABITS CHALLENGE',
-                    style: FlutterFlowTheme.bodyText1,
+                    style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
                 Padding(
@@ -138,13 +140,14 @@ class _SubscirptionPageWidgetState extends State<SubscirptionPageWidget> {
                                       0, 0, 10, 0),
                                   child: FaIcon(
                                     FontAwesomeIcons.medal,
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
                                     size: 24,
                                   ),
                                 ),
                                 Text(
                                   '21 Day Challenge',
-                                  style: FlutterFlowTheme.bodyText1,
+                                  style: FlutterFlowTheme.of(context).bodyText1,
                                 ),
                               ],
                             ),
@@ -156,7 +159,7 @@ class _SubscirptionPageWidgetState extends State<SubscirptionPageWidget> {
                                 child: Text(
                                   '2.99/year',
                                   textAlign: TextAlign.start,
-                                  style: FlutterFlowTheme.bodyText1,
+                                  style: FlutterFlowTheme.of(context).bodyText1,
                                 ),
                               ),
                             if (currentUserDocument?.subscriptionList.contains(
@@ -166,10 +169,13 @@ class _SubscirptionPageWidgetState extends State<SubscirptionPageWidget> {
                                 child: Text(
                                   'Subscribed',
                                   textAlign: TextAlign.start,
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.primaryColor,
-                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                      ),
                                 ),
                               ),
                           ],
@@ -215,20 +221,21 @@ class _SubscirptionPageWidgetState extends State<SubscirptionPageWidget> {
                                       0, 0, 10, 0),
                                   child: FaIcon(
                                     FontAwesomeIcons.medal,
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
                                     size: 24,
                                   ),
                                 ),
                                 Text(
                                   '90 Day Challenge',
-                                  style: FlutterFlowTheme.bodyText1,
+                                  style: FlutterFlowTheme.of(context).bodyText1,
                                 ),
                               ],
                             ),
                             Text(
                               '4.98/year',
                               textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.bodyText1,
+                              style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                           ],
                         ),
@@ -240,7 +247,7 @@ class _SubscirptionPageWidgetState extends State<SubscirptionPageWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 5),
                   child: Text(
                     'DAILY SUCCESS TOOLS',
-                    style: FlutterFlowTheme.bodyText1,
+                    style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
                 Padding(
@@ -280,20 +287,21 @@ class _SubscirptionPageWidgetState extends State<SubscirptionPageWidget> {
                                       0, 0, 10, 0),
                                   child: FaIcon(
                                     FontAwesomeIcons.book,
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
                                     size: 24,
                                   ),
                                 ),
                                 Text(
                                   'Daily Success Planner',
-                                  style: FlutterFlowTheme.bodyText1,
+                                  style: FlutterFlowTheme.of(context).bodyText1,
                                 ),
                               ],
                             ),
                             Text(
                               '12.99/year',
                               textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.bodyText1,
+                              style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                           ],
                         ),
@@ -338,20 +346,21 @@ class _SubscirptionPageWidgetState extends State<SubscirptionPageWidget> {
                                       0, 0, 10, 0),
                                   child: FaIcon(
                                     FontAwesomeIcons.book,
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
                                     size: 24,
                                   ),
                                 ),
                                 Text(
                                   'Daily Financial Planner',
-                                  style: FlutterFlowTheme.bodyText1,
+                                  style: FlutterFlowTheme.of(context).bodyText1,
                                 ),
                               ],
                             ),
                             Text(
                               '12.99/year',
                               textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.bodyText1,
+                              style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                           ],
                         ),
@@ -432,20 +441,21 @@ class _SubscirptionPageWidgetState extends State<SubscirptionPageWidget> {
                                       0, 0, 10, 0),
                                   child: FaIcon(
                                     FontAwesomeIcons.book,
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
                                     size: 24,
                                   ),
                                 ),
                                 Text(
                                   'Daily Goal Book',
-                                  style: FlutterFlowTheme.bodyText1,
+                                  style: FlutterFlowTheme.of(context).bodyText1,
                                 ),
                               ],
                             ),
                             Text(
                               '4.99/year',
                               textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.bodyText1,
+                              style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                           ],
                         ),

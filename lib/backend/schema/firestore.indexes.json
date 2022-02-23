@@ -15,20 +15,6 @@
       ]
     },
     {
-      "collectionGroup": "ninety_days_challenge",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "uid",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "label",
-          "order": "ASCENDING"
-        }
-      ]
-    },
-    {
       "collectionGroup": "vision_board_achievement",
       "queryScope": "COLLECTION",
       "fields": [
@@ -102,6 +88,38 @@
         },
         {
           "fieldPath": "quarter",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "ninety_days_challenge",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "uid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "label",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "task90",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "uid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "day",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "label",
           "order": "ASCENDING"
         }
       ]

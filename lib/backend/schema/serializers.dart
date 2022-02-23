@@ -17,6 +17,9 @@ import 'task21_record.dart';
 import 'quarterly_goals_record.dart';
 import 'daily_success_planner_record.dart';
 import 'targets_record.dart';
+import 'task90_record.dart';
+import 'ninety_days_counter_record.dart';
+import 'video_courses_record.dart';
 
 import 'index.dart';
 
@@ -44,6 +47,9 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   QuarterlyGoalsRecord,
   DailySuccessPlannerRecord,
   TargetsRecord,
+  Task90Record,
+  NinetyDaysCounterRecord,
+  VideoCoursesRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

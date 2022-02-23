@@ -4,6 +4,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../log_in_page/log_in_page_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class UserAccountWidget extends StatefulWidget {
@@ -93,12 +94,14 @@ class _UserAccountWidgetState extends State<UserAccountWidget> {
                               child: AuthUserStreamWidget(
                                 child: Text(
                                   currentUserDisplayName,
-                                  style: FlutterFlowTheme.title1.override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: Color(0xFF090F13),
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .title1
+                                      .override(
+                                        fontFamily: 'Lexend Deca',
+                                        color: Color(0xFF090F13),
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                 ),
                               ),
                             ),
@@ -115,12 +118,14 @@ class _UserAccountWidgetState extends State<UserAccountWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                               child: Text(
                                 currentUserEmail,
-                                style: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: Color(0xFF121212),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.normal,
-                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Color(0xFF121212),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
+                                    ),
                               ),
                             ),
                           ],
@@ -142,12 +147,12 @@ class _UserAccountWidgetState extends State<UserAccountWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(24, 12, 0, 12),
                     child: Text(
                       'Account Settings',
-                      style: FlutterFlowTheme.bodyText1.override(
-                        fontFamily: 'Lexend Deca',
-                        color: Color(0xFF090F13),
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Lexend Deca',
+                            color: Color(0xFF090F13),
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
                     ),
                   ),
                 ],
@@ -179,12 +184,14 @@ class _UserAccountWidgetState extends State<UserAccountWidget> {
                                   EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                               child: Text(
                                 'Settings',
-                                style: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: Color(0xFF090F13),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.normal,
-                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Color(0xFF090F13),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
+                                    ),
                               ),
                             ),
                             Expanded(
@@ -223,12 +230,14 @@ class _UserAccountWidgetState extends State<UserAccountWidget> {
                                   EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                               child: Text(
                                 'Notifications',
-                                style: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: Color(0xFF090F13),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.normal,
-                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Color(0xFF090F13),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
+                                    ),
                               ),
                             ),
                             Expanded(
@@ -267,12 +276,14 @@ class _UserAccountWidgetState extends State<UserAccountWidget> {
                                   EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                               child: Text(
                                 'Change Password',
-                                style: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: Color(0xFF090F13),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.normal,
-                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Color(0xFF090F13),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
+                                    ),
                               ),
                             ),
                             Expanded(
@@ -335,13 +346,16 @@ class _UserAccountWidgetState extends State<UserAccountWidget> {
                         options: FFButtonOptions(
                           width: 150,
                           height: 60,
-                          color: FlutterFlowTheme.primaryColor,
-                          textStyle: FlutterFlowTheme.bodyText2.override(
-                            fontFamily: 'Lexend Deca',
-                            color: FlutterFlowTheme.tertiaryColor,
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                          ),
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          textStyle: FlutterFlowTheme.of(context)
+                              .bodyText2
+                              .override(
+                                fontFamily: 'Lexend Deca',
+                                color:
+                                    FlutterFlowTheme.of(context).tertiaryColor,
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                              ),
                           elevation: 3,
                           borderSide: BorderSide(
                             color: Colors.transparent,

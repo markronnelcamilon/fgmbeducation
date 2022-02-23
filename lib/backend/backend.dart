@@ -21,6 +21,9 @@ import 'schema/task21_record.dart';
 import 'schema/quarterly_goals_record.dart';
 import 'schema/daily_success_planner_record.dart';
 import 'schema/targets_record.dart';
+import 'schema/task90_record.dart';
+import 'schema/ninety_days_counter_record.dart';
+import 'schema/video_courses_record.dart';
 import 'schema/serializers.dart';
 
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -44,6 +47,9 @@ export 'schema/task21_record.dart';
 export 'schema/quarterly_goals_record.dart';
 export 'schema/daily_success_planner_record.dart';
 export 'schema/targets_record.dart';
+export 'schema/task90_record.dart';
+export 'schema/ninety_days_counter_record.dart';
+export 'schema/video_courses_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord(
@@ -327,6 +333,55 @@ Future<List<TargetsRecord>> queryTargetsRecordOnce(
         int limit = -1,
         bool singleRecord = false}) =>
     queryCollectionOnce(TargetsRecord.collection, TargetsRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+/// Functions to query Task90Records (as a Stream and as a Future).
+Stream<List<Task90Record>> queryTask90Record(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(Task90Record.collection, Task90Record.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<List<Task90Record>> queryTask90RecordOnce(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollectionOnce(Task90Record.collection, Task90Record.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+/// Functions to query NinetyDaysCounterRecords (as a Stream and as a Future).
+Stream<List<NinetyDaysCounterRecord>> queryNinetyDaysCounterRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(
+        NinetyDaysCounterRecord.collection, NinetyDaysCounterRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<List<NinetyDaysCounterRecord>> queryNinetyDaysCounterRecordOnce(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollectionOnce(
+        NinetyDaysCounterRecord.collection, NinetyDaysCounterRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+/// Functions to query VideoCoursesRecords (as a Stream and as a Future).
+Stream<List<VideoCoursesRecord>> queryVideoCoursesRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(
+        VideoCoursesRecord.collection, VideoCoursesRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<List<VideoCoursesRecord>> queryVideoCoursesRecordOnce(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollectionOnce(
+        VideoCoursesRecord.collection, VideoCoursesRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
 Stream<List<T>> queryCollection<T>(

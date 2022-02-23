@@ -4,6 +4,7 @@ import '../daily_success_planner_page/daily_success_planner_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -24,14 +25,14 @@ class _DailySuccessPlannerListWidgetState
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.primaryColor,
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         automaticallyImplyLeading: true,
         title: Text(
           'Daily Success Planner',
-          style: FlutterFlowTheme.title3.override(
-            fontFamily: 'Poppins',
-            color: FlutterFlowTheme.tertiaryColor,
-          ),
+          style: FlutterFlowTheme.of(context).title3.override(
+                fontFamily: 'Poppins',
+                color: FlutterFlowTheme.of(context).tertiaryColor,
+              ),
         ),
         actions: [],
         centerTitle: true,
@@ -44,7 +45,7 @@ class _DailySuccessPlannerListWidgetState
           children: [
             Expanded(
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(6, 0, 6, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                 child: StreamBuilder<List<DailySuccessPlannerRecord>>(
                   stream: queryDailySuccessPlannerRecord(
                     queryBuilder: (dailySuccessPlannerRecord) =>
@@ -60,8 +61,9 @@ class _DailySuccessPlannerListWidgetState
                         child: SizedBox(
                           width: 50,
                           height: 50,
-                          child: CircularProgressIndicator(
-                            color: FlutterFlowTheme.primaryColor,
+                          child: SpinKitDoubleBounce(
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            size: 50,
                           ),
                         ),
                       );
@@ -79,71 +81,93 @@ class _DailySuccessPlannerListWidgetState
                         return Container(
                           width: 100,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.tertiaryColor,
+                            color: FlutterFlowTheme.of(context).tertiaryColor,
                           ),
-                          child: InkWell(
-                            onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      DailySuccessPlannerPageWidget(
-                                    dailySuccessPlannerRR:
-                                        listViewDailySuccessPlannerRecord
-                                            .reference,
-                                  ),
-                                ),
-                              );
-                            },
-                            child: Card(
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              color: Color(0xFFF5F5F5),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8, 8, 8, 8),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            dateTimeFormat(
-                                                'yMMMd',
-                                                listViewDailySuccessPlannerRecord
-                                                    .date),
-                                            style: FlutterFlowTheme.bodyText1,
-                                          ),
-                                          Text(
-                                            listViewDailySuccessPlannerRecord
-                                                .gratefulFor,
-                                            style: FlutterFlowTheme.bodyText1,
-                                          ),
-                                        ],
-                                      ),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(16, 2, 16, 2),
+                            child: InkWell(
+                              onTap: () async {
+                                await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        DailySuccessPlannerPageWidget(
+                                      dailySuccessPlannerRR:
+                                          listViewDailySuccessPlannerRecord
+                                              .reference,
                                     ),
-                                    if ((listViewDailySuccessPlannerRecord
-                                            .didWinTheDay) ==
-                                        true)
-                                      FaIcon(
-                                        FontAwesomeIcons.medal,
-                                        color: FlutterFlowTheme.primaryColor,
-                                        size: 24,
+                                  ),
+                                );
+                              },
+                              child: Card(
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                color: Color(0xFFF5F5F5),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 16, 0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8, 8, 8, 8),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              dateTimeFormat(
+                                                  'yMMMd',
+                                                  listViewDailySuccessPlannerRecord
+                                                      .date),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily: 'Poppins',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryColor,
+                                                      ),
+                                            ),
+                                            Text(
+                                              listViewDailySuccessPlannerRecord
+                                                  .gratefulFor,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily: 'Poppins',
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                      ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                  ],
+                                      if ((listViewDailySuccessPlannerRecord
+                                              .didWinTheDay) ==
+                                          true)
+                                        FaIcon(
+                                          FontAwesomeIcons.medal,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          size: 24,
+                                        ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

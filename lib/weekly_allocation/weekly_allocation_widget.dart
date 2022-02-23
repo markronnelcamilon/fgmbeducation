@@ -1,6 +1,7 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WeeklyAllocationWidget extends StatefulWidget {
@@ -29,11 +30,11 @@ class _WeeklyAllocationWidgetState extends State<WeeklyAllocationWidget> {
         onPressed: () {
           print('FloatingActionButton pressed ...');
         },
-        backgroundColor: FlutterFlowTheme.primaryColor,
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         elevation: 8,
         child: Icon(
           Icons.calculate_sharp,
-          color: FlutterFlowTheme.tertiaryColor,
+          color: FlutterFlowTheme.of(context).tertiaryColor,
           size: 24,
         ),
       ),
@@ -59,8 +60,8 @@ class _WeeklyAllocationWidgetState extends State<WeeklyAllocationWidget> {
                         ],
                         gradient: LinearGradient(
                           colors: [
-                            FlutterFlowTheme.tertiaryColor,
-                            FlutterFlowTheme.primaryColor
+                            FlutterFlowTheme.of(context).tertiaryColor,
+                            FlutterFlowTheme.of(context).primaryColor
                           ],
                           stops: [0, 1],
                           begin: AlignmentDirectional(0.94, -1),
@@ -86,10 +87,13 @@ class _WeeklyAllocationWidgetState extends State<WeeklyAllocationWidget> {
                                 ),
                                 Text(
                                   '01/10/2022',
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.secondaryColor,
-                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryColor,
+                                      ),
                                 ),
                               ],
                             ),
@@ -102,12 +106,14 @@ class _WeeklyAllocationWidgetState extends State<WeeklyAllocationWidget> {
                               children: [
                                 Text(
                                   'PAY TO THE ORDER OF',
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.normal,
-                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Lexend Deca',
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.normal,
+                                      ),
                                 ),
                               ],
                             ),
@@ -125,7 +131,8 @@ class _WeeklyAllocationWidgetState extends State<WeeklyAllocationWidget> {
                                     decoration: InputDecoration(
                                       enabledBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
-                                          color: FlutterFlowTheme.tertiaryColor,
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiaryColor,
                                           width: 1,
                                         ),
                                         borderRadius: const BorderRadius.only(
@@ -135,7 +142,8 @@ class _WeeklyAllocationWidgetState extends State<WeeklyAllocationWidget> {
                                       ),
                                       focusedBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
-                                          color: FlutterFlowTheme.tertiaryColor,
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiaryColor,
                                           width: 1,
                                         ),
                                         borderRadius: const BorderRadius.only(
@@ -145,7 +153,8 @@ class _WeeklyAllocationWidgetState extends State<WeeklyAllocationWidget> {
                                       ),
                                       filled: true,
                                     ),
-                                    style: FlutterFlowTheme.bodyText1,
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyText1,
                                     keyboardType: TextInputType.number,
                                   ),
                                 ),
@@ -164,13 +173,15 @@ class _WeeklyAllocationWidgetState extends State<WeeklyAllocationWidget> {
                                   children: [
                                     Text(
                                       'Continued Sucess',
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Roboto Mono',
-                                        color: FlutterFlowTheme.secondaryColor,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.normal,
-                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Roboto Mono',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryColor,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.normal,
+                                          ),
                                     ),
                                     Image.asset(
                                       'assets/images/Untitled_design_(6).png',
@@ -197,12 +208,13 @@ class _WeeklyAllocationWidgetState extends State<WeeklyAllocationWidget> {
                 child: Column(
                   children: [
                     TabBar(
-                      labelColor: FlutterFlowTheme.primaryColor,
-                      labelStyle: FlutterFlowTheme.bodyText1.override(
-                        fontFamily: 'Poppins',
-                        fontSize: 8,
-                      ),
-                      indicatorColor: FlutterFlowTheme.primaryColor,
+                      labelColor: FlutterFlowTheme.of(context).primaryColor,
+                      labelStyle:
+                          FlutterFlowTheme.of(context).bodyText1.override(
+                                fontFamily: 'Poppins',
+                                fontSize: 8,
+                              ),
+                      indicatorColor: FlutterFlowTheme.of(context).primaryColor,
                       tabs: [
                         Tab(
                           text: 'Business Allocation Amount',
@@ -244,17 +256,20 @@ class _WeeklyAllocationWidgetState extends State<WeeklyAllocationWidget> {
                                               Text(
                                                 'Income Account (100%)',
                                                 style:
-                                                    FlutterFlowTheme.bodyText1,
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1,
                                               ),
                                               Text(
                                                 '\$ 100.00',
-                                                style: FlutterFlowTheme
-                                                    .bodyText1
-                                                    .override(
-                                                  fontFamily: 'Poppins',
-                                                  color: FlutterFlowTheme
-                                                      .primaryColor,
-                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryColor,
+                                                        ),
                                               ),
                                             ],
                                           ),
@@ -271,17 +286,20 @@ class _WeeklyAllocationWidgetState extends State<WeeklyAllocationWidget> {
                                               Text(
                                                 'Profit (10%)',
                                                 style:
-                                                    FlutterFlowTheme.bodyText1,
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1,
                                               ),
                                               Text(
                                                 '\$ 10.00',
-                                                style: FlutterFlowTheme
-                                                    .bodyText1
-                                                    .override(
-                                                  fontFamily: 'Poppins',
-                                                  color: FlutterFlowTheme
-                                                      .primaryColor,
-                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryColor,
+                                                        ),
                                               ),
                                             ],
                                           ),
@@ -298,17 +316,20 @@ class _WeeklyAllocationWidgetState extends State<WeeklyAllocationWidget> {
                                               Text(
                                                 'Tax (15%)',
                                                 style:
-                                                    FlutterFlowTheme.bodyText1,
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1,
                                               ),
                                               Text(
                                                 '\$ 15.00',
-                                                style: FlutterFlowTheme
-                                                    .bodyText1
-                                                    .override(
-                                                  fontFamily: 'Poppins',
-                                                  color: FlutterFlowTheme
-                                                      .primaryColor,
-                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryColor,
+                                                        ),
                                               ),
                                             ],
                                           ),
@@ -325,17 +346,20 @@ class _WeeklyAllocationWidgetState extends State<WeeklyAllocationWidget> {
                                               Text(
                                                 'Owner\'s Pay',
                                                 style:
-                                                    FlutterFlowTheme.bodyText1,
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1,
                                               ),
                                               Text(
                                                 '\$ 100.00',
-                                                style: FlutterFlowTheme
-                                                    .bodyText1
-                                                    .override(
-                                                  fontFamily: 'Poppins',
-                                                  color: FlutterFlowTheme
-                                                      .primaryColor,
-                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryColor,
+                                                        ),
                                               ),
                                             ],
                                           ),
@@ -352,17 +376,20 @@ class _WeeklyAllocationWidgetState extends State<WeeklyAllocationWidget> {
                                               Text(
                                                 'Operating Expenses',
                                                 style:
-                                                    FlutterFlowTheme.bodyText1,
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1,
                                               ),
                                               Text(
                                                 '\$ 100.00',
-                                                style: FlutterFlowTheme
-                                                    .bodyText1
-                                                    .override(
-                                                  fontFamily: 'Poppins',
-                                                  color: FlutterFlowTheme
-                                                      .primaryColor,
-                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryColor,
+                                                        ),
                                               ),
                                             ],
                                           ),

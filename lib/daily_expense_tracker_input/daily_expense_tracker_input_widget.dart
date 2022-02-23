@@ -11,6 +11,7 @@ import '../main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DailyExpenseTrackerInputWidget extends StatefulWidget {
@@ -39,45 +40,46 @@ class _DailyExpenseTrackerInputWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      child: Scaffold(
-        key: scaffoldKey,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.primaryColor,
-          automaticallyImplyLeading: true,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
-              size: 30,
-            ),
-            onPressed: () async {
-              await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DailyFinancialTrackerWidget(),
-                ),
-              );
-            },
+    return Scaffold(
+      key: scaffoldKey,
+      appBar: AppBar(
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+        automaticallyImplyLeading: true,
+        leading: FlutterFlowIconButton(
+          borderColor: Colors.transparent,
+          borderRadius: 30,
+          borderWidth: 1,
+          buttonSize: 60,
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: 30,
           ),
-          title: Text(
-            'Input Expenses',
-            style: FlutterFlowTheme.title3.override(
-              fontFamily: 'Poppins',
-              color: FlutterFlowTheme.tertiaryColor,
-            ),
-          ),
-          actions: [],
-          centerTitle: true,
-          elevation: 4,
+          onPressed: () async {
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DailyFinancialTrackerWidget(),
+              ),
+            );
+          },
         ),
-        backgroundColor: Color(0xFFF5F5F5),
-        body: SafeArea(
+        title: Text(
+          'Input Expenses',
+          style: FlutterFlowTheme.of(context).title3.override(
+                fontFamily: 'Poppins',
+                color: FlutterFlowTheme.of(context).tertiaryColor,
+              ),
+        ),
+        actions: [],
+        centerTitle: true,
+        elevation: 4,
+      ),
+      backgroundColor: Color(0xFFF5F5F5),
+      body: SafeArea(
+        child: Form(
+          key: formKey,
+          autovalidateMode: AutovalidateMode.disabled,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -92,10 +94,10 @@ class _DailyExpenseTrackerInputWidgetState
                       padding: EdgeInsetsDirectional.fromSTEB(0, 8, 8, 8),
                       child: Text(
                         'January 10, 2022',
-                        style: FlutterFlowTheme.bodyText1.override(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w600,
+                            ),
                       ),
                     ),
                     Padding(
@@ -127,12 +129,6 @@ class _DailyExpenseTrackerInputWidgetState
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'Description',
-                                    labelStyle:
-                                        FlutterFlowTheme.bodyText2.override(
-                                      fontFamily: 'Montserrat',
-                                      color: Color(0xFF8B97A2),
-                                      fontWeight: FontWeight.w500,
-                                    ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
@@ -165,11 +161,13 @@ class _DailyExpenseTrackerInputWidgetState
                                           )
                                         : null,
                                   ),
-                                  style: FlutterFlowTheme.bodyText2.override(
-                                    fontFamily: 'Montserrat',
-                                    color: Color(0xFF8B97A2),
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText2
+                                      .override(
+                                        fontFamily: 'Montserrat',
+                                        color: Color(0xFF8B97A2),
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                   keyboardType: TextInputType.multiline,
                                 ),
                               ),
@@ -202,10 +200,12 @@ class _DailyExpenseTrackerInputWidgetState
                                   setState(() => dropDownValue = val),
                               width: 130,
                               height: 40,
-                              textStyle: FlutterFlowTheme.bodyText1.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.black,
-                              ),
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Poppins',
+                                    color: Colors.black,
+                                  ),
                               fillColor: Colors.white,
                               elevation: 2,
                               borderColor: Colors.transparent,
@@ -243,12 +243,6 @@ class _DailyExpenseTrackerInputWidgetState
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'Amount',
-                                    labelStyle:
-                                        FlutterFlowTheme.bodyText2.override(
-                                      fontFamily: 'Montserrat',
-                                      color: Color(0xFF8B97A2),
-                                      fontWeight: FontWeight.w500,
-                                    ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
@@ -273,11 +267,13 @@ class _DailyExpenseTrackerInputWidgetState
                                       Icons.attach_money,
                                     ),
                                   ),
-                                  style: FlutterFlowTheme.bodyText2.override(
-                                    fontFamily: 'Montserrat',
-                                    color: Color(0xFF8B97A2),
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText2
+                                      .override(
+                                        fontFamily: 'Montserrat',
+                                        color: Color(0xFF8B97A2),
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                   keyboardType: TextInputType.number,
                                   validator: (val) {
                                     if (val.isEmpty) {
@@ -307,13 +303,15 @@ class _DailyExpenseTrackerInputWidgetState
                               setState(() => wantsOrNeedsValue = value);
                             },
                             optionHeight: 60,
-                            textStyle: FlutterFlowTheme.bodyText1.override(
-                              fontFamily: 'Poppins',
-                              color: Colors.black,
-                            ),
+                            textStyle:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      color: Colors.black,
+                                    ),
                             buttonPosition: RadioButtonPosition.left,
                             direction: Axis.horizontal,
-                            radioButtonColor: FlutterFlowTheme.primaryColor,
+                            radioButtonColor:
+                                FlutterFlowTheme.of(context).primaryColor,
                             inactiveRadioButtonColor: Color(0x8A000000),
                             toggleable: false,
                             horizontalAlignment: WrapAlignment.center,
@@ -347,13 +345,14 @@ class _DailyExpenseTrackerInputWidgetState
                         options: FFButtonOptions(
                           width: 140,
                           height: 60,
-                          color: FlutterFlowTheme.primaryColor,
-                          textStyle: FlutterFlowTheme.subtitle2.override(
-                            fontFamily: 'Montserrat',
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          textStyle:
+                              FlutterFlowTheme.of(context).subtitle2.override(
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                           elevation: 2,
                           borderSide: BorderSide(
                             color: Colors.transparent,
@@ -370,9 +369,6 @@ class _DailyExpenseTrackerInputWidgetState
                       padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          if (!formKey.currentState.validate()) {
-                            return;
-                          }
                           final financialPlannerCreateData =
                               createFinancialPlannerRecordData(
                             uid: currentUserUid,
@@ -390,13 +386,14 @@ class _DailyExpenseTrackerInputWidgetState
                         options: FFButtonOptions(
                           width: 140,
                           height: 60,
-                          color: FlutterFlowTheme.primaryColor,
-                          textStyle: FlutterFlowTheme.subtitle2.override(
-                            fontFamily: 'Montserrat',
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          textStyle:
+                              FlutterFlowTheme.of(context).subtitle2.override(
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                           elevation: 2,
                           borderSide: BorderSide(
                             color: Colors.transparent,

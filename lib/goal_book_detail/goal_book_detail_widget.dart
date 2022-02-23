@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class GoalBookDetailWidget extends StatefulWidget {
@@ -33,8 +34,9 @@ class _GoalBookDetailWidgetState extends State<GoalBookDetailWidget> {
             child: SizedBox(
               width: 50,
               height: 50,
-              child: CircularProgressIndicator(
-                color: FlutterFlowTheme.primaryColor,
+              child: SpinKitDoubleBounce(
+                color: FlutterFlowTheme.of(context).primaryColor,
+                size: 50,
               ),
             ),
           );
@@ -43,7 +45,7 @@ class _GoalBookDetailWidgetState extends State<GoalBookDetailWidget> {
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.primaryColor,
+            backgroundColor: FlutterFlowTheme.of(context).primaryColor,
             automaticallyImplyLeading: true,
             leading: FlutterFlowIconButton(
               borderColor: Colors.transparent,
@@ -71,7 +73,7 @@ class _GoalBookDetailWidgetState extends State<GoalBookDetailWidget> {
           ),
           backgroundColor: Color(0xFFF1F4F8),
           body: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+            padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -79,11 +81,14 @@ class _GoalBookDetailWidgetState extends State<GoalBookDetailWidget> {
               children: [
                 Text(
                   dateTimeFormat('yMd', goalBookDetailGoalBookRecord.date),
-                  style: FlutterFlowTheme.subtitle2,
+                  style: FlutterFlowTheme.of(context).title3.override(
+                        fontFamily: 'Poppins',
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                      ),
                 ),
                 Text(
                   goalBookDetailGoalBookRecord.goal,
-                  style: FlutterFlowTheme.bodyText2,
+                  style: FlutterFlowTheme.of(context).bodyText2,
                 ),
               ],
             ),

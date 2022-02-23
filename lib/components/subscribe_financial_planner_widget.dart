@@ -2,6 +2,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SubscribeFinancialPlannerWidget extends StatefulWidget {
@@ -30,7 +31,7 @@ class _SubscribeFinancialPlannerWidgetState
             padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
             child: Text(
               'Subscribe Now!',
-              style: FlutterFlowTheme.bodyText1,
+              style: FlutterFlowTheme.of(context).bodyText1,
             ),
           ),
           Row(
@@ -46,10 +47,10 @@ class _SubscribeFinancialPlannerWidgetState
                   width: 130,
                   height: 40,
                   color: Color(0xFFEAEAEA),
-                  textStyle: FlutterFlowTheme.subtitle2.override(
-                    fontFamily: 'Poppins',
-                    color: Color(0xFFCFB53B),
-                  ),
+                  textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                        fontFamily: 'Poppins',
+                        color: Color(0xFFCFB53B),
+                      ),
                   borderSide: BorderSide(
                     color: Colors.transparent,
                     width: 1,
@@ -65,11 +66,11 @@ class _SubscribeFinancialPlannerWidgetState
                 options: FFButtonOptions(
                   width: 130,
                   height: 40,
-                  color: FlutterFlowTheme.primaryColor,
-                  textStyle: FlutterFlowTheme.subtitle2.override(
-                    fontFamily: 'Poppins',
-                    color: Colors.white,
-                  ),
+                  color: FlutterFlowTheme.of(context).primaryColor,
+                  textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                        fontFamily: 'Poppins',
+                        color: Colors.white,
+                      ),
                   borderSide: BorderSide(
                     color: Colors.transparent,
                     width: 1,

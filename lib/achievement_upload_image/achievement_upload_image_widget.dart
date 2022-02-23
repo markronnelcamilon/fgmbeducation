@@ -9,6 +9,7 @@ import '../flutter_flow/upload_media.dart';
 import '../vision_board/vision_board_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AchievementUploadImageWidget extends StatefulWidget {
@@ -33,12 +34,12 @@ class _AchievementUploadImageWidgetState
         automaticallyImplyLeading: false,
         title: Text(
           'Upload Image',
-          style: FlutterFlowTheme.title2.override(
-            fontFamily: 'Lexend Deca',
-            color: Color(0xFF090F13),
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-          ),
+          style: FlutterFlowTheme.of(context).title2.override(
+                fontFamily: 'Lexend Deca',
+                color: Color(0xFF090F13),
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
         ),
         actions: [
           Padding(
@@ -89,8 +90,11 @@ class _AchievementUploadImageWidgetState
                             if (selectedMedia != null &&
                                 validateFileFormat(
                                     selectedMedia.storagePath, context)) {
-                              showUploadMessage(context, 'Uploading file...',
-                                  showLoading: true);
+                              showUploadMessage(
+                                context,
+                                'Uploading file...',
+                                showLoading: true,
+                              );
                               final downloadUrl = await uploadData(
                                   selectedMedia.storagePath,
                                   selectedMedia.bytes);
@@ -98,10 +102,15 @@ class _AchievementUploadImageWidgetState
                                   .hideCurrentSnackBar();
                               if (downloadUrl != null) {
                                 setState(() => uploadedFileUrl = downloadUrl);
-                                showUploadMessage(context, 'Success!');
+                                showUploadMessage(
+                                  context,
+                                  'Success!',
+                                );
                               } else {
                                 showUploadMessage(
-                                    context, 'Failed to upload media');
+                                  context,
+                                  'Failed to upload media',
+                                );
                                 return;
                               }
                             }
@@ -159,13 +168,13 @@ class _AchievementUploadImageWidgetState
               options: FFButtonOptions(
                 width: 270,
                 height: 60,
-                color: FlutterFlowTheme.primaryColor,
-                textStyle: FlutterFlowTheme.subtitle2.override(
-                  fontFamily: 'Lexend Deca',
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
+                color: FlutterFlowTheme.of(context).primaryColor,
+                textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                      fontFamily: 'Lexend Deca',
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
                 elevation: 3,
                 borderSide: BorderSide(
                   color: Colors.transparent,

@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../vision_board/vision_board_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AchivementBoardWidget extends StatefulWidget {
@@ -22,7 +23,7 @@ class _AchivementBoardWidgetState extends State<AchivementBoardWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.primaryColor,
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
@@ -41,12 +42,12 @@ class _AchivementBoardWidgetState extends State<AchivementBoardWidget> {
         ),
         title: Text(
           'Achievement Board',
-          style: FlutterFlowTheme.title2.override(
-            fontFamily: 'Lexend Deca',
-            color: Colors.white,
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-          ),
+          style: FlutterFlowTheme.of(context).title2.override(
+                fontFamily: 'Lexend Deca',
+                color: Colors.white,
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
         ),
         actions: [],
         centerTitle: false,
@@ -61,24 +62,24 @@ class _AchivementBoardWidgetState extends State<AchivementBoardWidget> {
             ),
           );
         },
-        backgroundColor: FlutterFlowTheme.primaryColor,
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         elevation: 8,
         label: Row(
           mainAxisSize: MainAxisSize.max,
           children: [
             Icon(
               Icons.file_upload,
-              color: FlutterFlowTheme.tertiaryColor,
+              color: FlutterFlowTheme.of(context).tertiaryColor,
               size: 24,
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
               child: Text(
                 'Upload',
-                style: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Poppins',
-                  color: FlutterFlowTheme.tertiaryColor,
-                ),
+                style: FlutterFlowTheme.of(context).bodyText1.override(
+                      fontFamily: 'Poppins',
+                      color: FlutterFlowTheme.of(context).tertiaryColor,
+                    ),
               ),
             ),
           ],
@@ -114,8 +115,9 @@ class _AchivementBoardWidgetState extends State<AchivementBoardWidget> {
                         child: SizedBox(
                           width: 50,
                           height: 50,
-                          child: CircularProgressIndicator(
-                            color: FlutterFlowTheme.primaryColor,
+                          child: SpinKitDoubleBounce(
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            size: 50,
                           ),
                         ),
                       );

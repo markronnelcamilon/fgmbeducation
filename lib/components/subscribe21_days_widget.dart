@@ -8,6 +8,7 @@ import '../custom_code/actions/index.dart' as actions;
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Subscribe21DaysWidget extends StatefulWidget {
@@ -24,7 +25,7 @@ class _Subscribe21DaysWidgetState extends State<Subscribe21DaysWidget> {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.3,
       decoration: BoxDecoration(
-        color: FlutterFlowTheme.tertiaryColor,
+        color: FlutterFlowTheme.of(context).tertiaryColor,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -34,7 +35,7 @@ class _Subscribe21DaysWidgetState extends State<Subscribe21DaysWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
             child: Text(
               'Subscribe Now!',
-              style: FlutterFlowTheme.title1,
+              style: FlutterFlowTheme.of(context).title1,
             ),
           ),
           Padding(
@@ -42,7 +43,7 @@ class _Subscribe21DaysWidgetState extends State<Subscribe21DaysWidget> {
             child: Text(
               'Subscribe to 21 Days Challenge and Win your day.',
               textAlign: TextAlign.center,
-              style: FlutterFlowTheme.title3,
+              style: FlutterFlowTheme.of(context).title3,
             ),
           ),
           Row(
@@ -58,10 +59,10 @@ class _Subscribe21DaysWidgetState extends State<Subscribe21DaysWidget> {
                   width: 130,
                   height: 40,
                   color: Colors.transparent,
-                  textStyle: FlutterFlowTheme.subtitle2.override(
-                    fontFamily: 'Poppins',
-                    color: Color(0xFFCFB53B),
-                  ),
+                  textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                        fontFamily: 'Poppins',
+                        color: Color(0xFFCFB53B),
+                      ),
                   borderSide: BorderSide(
                     color: Colors.transparent,
                     width: 1,
@@ -112,11 +113,11 @@ class _Subscribe21DaysWidgetState extends State<Subscribe21DaysWidget> {
                 options: FFButtonOptions(
                   width: 130,
                   height: 40,
-                  color: FlutterFlowTheme.primaryColor,
-                  textStyle: FlutterFlowTheme.subtitle2.override(
-                    fontFamily: 'Poppins',
-                    color: Colors.white,
-                  ),
+                  color: FlutterFlowTheme.of(context).primaryColor,
+                  textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                        fontFamily: 'Poppins',
+                        color: Colors.white,
+                      ),
                   borderSide: BorderSide(
                     color: Colors.transparent,
                     width: 1,

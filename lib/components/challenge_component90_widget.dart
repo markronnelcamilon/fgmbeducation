@@ -9,38 +9,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ChallengeComponentWidget extends StatefulWidget {
-  const ChallengeComponentWidget({
+class ChallengeComponent90Widget extends StatefulWidget {
+  const ChallengeComponent90Widget({
     Key key,
-    this.challengeComponentUID,
-    this.challengeComponentDay,
-    this.challengeComponentDate,
-    this.challengeComponentRR,
-    this.challengeComponentTask5,
-    this.challengeComplete,
-    this.counterReference,
+    this.challengeComponent90UID,
+    this.challengeComponent90Day,
+    this.challengeComponent90Date,
+    this.challengeComponent90RR,
+    this.challengeComponent90Task5,
+    this.challengeComplete90,
   }) : super(key: key);
 
-  final String challengeComponentUID;
-  final String challengeComponentDay;
-  final DateTime challengeComponentDate;
-  final DocumentReference challengeComponentRR;
-  final bool challengeComponentTask5;
-  final TwentyOneDaysChallengeRecord challengeComplete;
-  final DocumentReference counterReference;
+  final String challengeComponent90UID;
+  final String challengeComponent90Day;
+  final DateTime challengeComponent90Date;
+  final DocumentReference challengeComponent90RR;
+  final bool challengeComponent90Task5;
+  final DocumentReference challengeComplete90;
 
   @override
-  _ChallengeComponentWidgetState createState() =>
-      _ChallengeComponentWidgetState();
+  _ChallengeComponent90WidgetState createState() =>
+      _ChallengeComponent90WidgetState();
 }
 
-class _ChallengeComponentWidgetState extends State<ChallengeComponentWidget> {
+class _ChallengeComponent90WidgetState
+    extends State<ChallengeComponent90Widget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(8, 16, 8, 8),
-      child: StreamBuilder<List<TwentyOneDaysChallengeRecord>>(
-        stream: queryTwentyOneDaysChallengeRecord(
+      child: StreamBuilder<List<NinetyDaysChallengeRecord>>(
+        stream: queryNinetyDaysChallengeRecord(
           singleRecord: true,
         ),
         builder: (context, snapshot) {
@@ -57,15 +56,15 @@ class _ChallengeComponentWidgetState extends State<ChallengeComponentWidget> {
               ),
             );
           }
-          List<TwentyOneDaysChallengeRecord>
-              columnTwentyOneDaysChallengeRecordList = snapshot.data;
+          List<NinetyDaysChallengeRecord> columnNinetyDaysChallengeRecordList =
+              snapshot.data;
           // Return an empty Container when the document does not exist.
           if (snapshot.data.isEmpty) {
             return Container();
           }
-          final columnTwentyOneDaysChallengeRecord =
-              columnTwentyOneDaysChallengeRecordList.isNotEmpty
-                  ? columnTwentyOneDaysChallengeRecordList.first
+          final columnNinetyDaysChallengeRecord =
+              columnNinetyDaysChallengeRecordList.isNotEmpty
+                  ? columnNinetyDaysChallengeRecordList.first
                   : null;
           return SingleChildScrollView(
             child: Column(
@@ -78,22 +77,24 @@ class _ChallengeComponentWidgetState extends State<ChallengeComponentWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        dateTimeFormat('yMMMd', widget.challengeComponentDate),
+                        dateTimeFormat(
+                            'yMMMd', widget.challengeComponent90Date),
                         textAlign: TextAlign.start,
                         style: FlutterFlowTheme.of(context).title3,
                       ),
                       Text(
-                        widget.challengeComponentDay,
+                        widget.challengeComponent90Day,
                         style: FlutterFlowTheme.of(context).title3,
                       ),
                     ],
                   ),
                 ),
-                StreamBuilder<List<Task21Record>>(
-                  stream: queryTask21Record(
-                    queryBuilder: (task21Record) => task21Record
+                StreamBuilder<List<Task90Record>>(
+                  stream: queryTask90Record(
+                    queryBuilder: (task90Record) => task90Record
                         .where('uid', isEqualTo: currentUserUid)
-                        .where('day', isEqualTo: widget.challengeComponentDay)
+                        .where('day',
+                            isEqualTo: columnNinetyDaysChallengeRecord.day)
                         .orderBy('label'),
                   ),
                   builder: (context, snapshot) {
@@ -110,13 +111,13 @@ class _ChallengeComponentWidgetState extends State<ChallengeComponentWidget> {
                         ),
                       );
                     }
-                    List<Task21Record> columnTask21RecordList = snapshot.data;
+                    List<Task90Record> columnTask90RecordList = snapshot.data;
                     return Column(
                       mainAxisSize: MainAxisSize.max,
-                      children: List.generate(columnTask21RecordList.length,
+                      children: List.generate(columnTask90RecordList.length,
                           (columnIndex) {
-                        final columnTask21Record =
-                            columnTask21RecordList[columnIndex];
+                        final columnTask90Record =
+                            columnTask90RecordList[columnIndex];
                         return Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -131,15 +132,15 @@ class _ChallengeComponentWidgetState extends State<ChallengeComponentWidget> {
                                 children: [
                                   ToggleIcon(
                                     onPressed: () async {
-                                      final task21UpdateData =
-                                          createTask21RecordData(
+                                      final task90UpdateData =
+                                          createTask90RecordData(
                                         taskState:
-                                            !columnTask21Record.taskState,
+                                            !columnTask90Record.taskState,
                                       );
-                                      await columnTask21Record.reference
-                                          .update(task21UpdateData);
+                                      await columnTask90Record.reference
+                                          .update(task90UpdateData);
                                     },
-                                    value: columnTask21Record.taskState,
+                                    value: columnTask90Record.taskState,
                                     onIcon: Icon(
                                       Icons.check_box,
                                       color: FlutterFlowTheme.of(context)
@@ -157,7 +158,7 @@ class _ChallengeComponentWidgetState extends State<ChallengeComponentWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         6, 0, 0, 0),
                                     child: Text(
-                                      columnTask21Record.taskName,
+                                      columnTask90Record.taskName,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1,
                                     ),
@@ -171,8 +172,8 @@ class _ChallengeComponentWidgetState extends State<ChallengeComponentWidget> {
                     );
                   },
                 ),
-                StreamBuilder<List<Task21Record>>(
-                  stream: queryTask21Record(
+                StreamBuilder<List<Task90Record>>(
+                  stream: queryTask90Record(
                     singleRecord: true,
                   ),
                   builder: (context, snapshot) {
@@ -189,71 +190,49 @@ class _ChallengeComponentWidgetState extends State<ChallengeComponentWidget> {
                         ),
                       );
                     }
-                    List<Task21Record> columnTask21RecordList = snapshot.data;
+                    List<Task90Record> columnTask90RecordList = snapshot.data;
                     // Return an empty Container when the document does not exist.
                     if (snapshot.data.isEmpty) {
                       return Container();
                     }
-                    final columnTask21Record = columnTask21RecordList.isNotEmpty
-                        ? columnTask21RecordList.first
+                    final columnTask90Record = columnTask90RecordList.isNotEmpty
+                        ? columnTask90RecordList.first
                         : null;
-                    return InkWell(
-                      onTap: () async {
-                        final twentyOneDaysChallengeUpdateData =
-                            createTwentyOneDaysChallengeRecordData(
-                          completed: true,
-                        );
-                        await columnTwentyOneDaysChallengeRecord.reference
-                            .update(twentyOneDaysChallengeUpdateData);
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                            child: FFButtonWidget(
-                              onPressed: () async {
-                                final twentyOneDaysChallengeUpdateData =
-                                    createTwentyOneDaysChallengeRecordData(
-                                  completed: true,
-                                );
-                                await widget.challengeComplete.reference
-                                    .update(twentyOneDaysChallengeUpdateData);
-
-                                final twentyOneDaysCounterUpdateData = {
-                                  'no_of_days': FieldValue.increment(1),
-                                };
-                                await widget.counterReference
-                                    .update(twentyOneDaysCounterUpdateData);
-                                Navigator.pop(context);
-                              },
-                              text: 'Complete',
-                              icon: Icon(
-                                Icons.fact_check,
-                                size: 15,
-                              ),
-                              options: FFButtonOptions(
-                                width: 200,
-                                height: 40,
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .subtitle2
-                                    .override(
+                    return Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        FFButtonWidget(
+                          onPressed: () async {
+                            Navigator.pop(context);
+                            final ninetyDaysChallengeUpdateData =
+                                createNinetyDaysChallengeRecordData(
+                              completed: true,
+                            );
+                            await columnNinetyDaysChallengeRecord.reference
+                                .update(ninetyDaysChallengeUpdateData);
+                          },
+                          text: 'Complete',
+                          icon: Icon(
+                            Icons.fact_check,
+                            size: 15,
+                          ),
+                          options: FFButtonOptions(
+                            width: 200,
+                            height: 40,
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            textStyle:
+                                FlutterFlowTheme.of(context).subtitle2.override(
                                       fontFamily: 'Poppins',
                                       color: Colors.white,
                                     ),
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1,
-                                ),
-                                borderRadius: 12,
-                              ),
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
                             ),
+                            borderRadius: 12,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     );
                   },
                 ),

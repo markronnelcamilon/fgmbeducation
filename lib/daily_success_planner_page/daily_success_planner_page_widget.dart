@@ -16,6 +16,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DailySuccessPlannerPageWidget extends StatefulWidget {
@@ -47,8 +48,9 @@ class _DailySuccessPlannerPageWidgetState
             child: SizedBox(
               width: 50,
               height: 50,
-              child: CircularProgressIndicator(
-                color: FlutterFlowTheme.primaryColor,
+              child: SpinKitDoubleBounce(
+                color: FlutterFlowTheme.of(context).primaryColor,
+                size: 50,
               ),
             ),
           );
@@ -57,7 +59,7 @@ class _DailySuccessPlannerPageWidgetState
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.primaryColor,
+            backgroundColor: FlutterFlowTheme.of(context).primaryColor,
             automaticallyImplyLeading: true,
             leading: FlutterFlowIconButton(
               borderColor: Colors.transparent,
@@ -81,16 +83,16 @@ class _DailySuccessPlannerPageWidgetState
             ),
             title: Text(
               'Daily Success Planner',
-              style: FlutterFlowTheme.title1.override(
-                fontFamily: 'Poppins',
-                color: Colors.white,
-              ),
+              style: FlutterFlowTheme.of(context).title1.override(
+                    fontFamily: 'Poppins',
+                    color: Colors.white,
+                  ),
             ),
             actions: [],
             centerTitle: true,
             elevation: 4,
           ),
-          backgroundColor: FlutterFlowTheme.tertiaryColor,
+          backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
           body: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -103,7 +105,7 @@ class _DailySuccessPlannerPageWidgetState
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.tertiaryColor,
+                          color: FlutterFlowTheme.of(context).tertiaryColor,
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -114,14 +116,14 @@ class _DailySuccessPlannerPageWidgetState
                                   'yMMMd',
                                   dailySuccessPlannerPageDailySuccessPlannerRecord
                                       .date),
-                              style: FlutterFlowTheme.title3,
+                              style: FlutterFlowTheme.of(context).title3,
                             ),
                           ],
                         ),
                       ),
                       Container(
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.tertiaryColor,
+                          color: FlutterFlowTheme.of(context).tertiaryColor,
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -158,10 +160,12 @@ class _DailySuccessPlannerPageWidgetState
                                   EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
                               child: Text(
                                 'Do you write down your goals?',
-                                style: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 12,
-                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 12,
+                                    ),
                               ),
                             ),
                           ],
@@ -169,7 +173,7 @@ class _DailySuccessPlannerPageWidgetState
                       ),
                       Container(
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.tertiaryColor,
+                          color: FlutterFlowTheme.of(context).tertiaryColor,
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -206,10 +210,12 @@ class _DailySuccessPlannerPageWidgetState
                                   EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
                               child: Text(
                                 'Did you read 10 pages of a book today?',
-                                style: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 12,
-                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 12,
+                                    ),
                               ),
                             ),
                           ],
@@ -229,8 +235,10 @@ class _DailySuccessPlannerPageWidgetState
                               child: SizedBox(
                                 width: 50,
                                 height: 50,
-                                child: CircularProgressIndicator(
-                                  color: FlutterFlowTheme.primaryColor,
+                                child: SpinKitDoubleBounce(
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  size: 50,
                                 ),
                               ),
                             );
@@ -277,7 +285,8 @@ class _DailySuccessPlannerPageWidgetState
                                         0.23,
                                     height: 120,
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.tertiaryColor,
+                                      color: FlutterFlowTheme.of(context)
+                                          .tertiaryColor,
                                     ),
                                     child: InkWell(
                                       onTap: () async {
@@ -315,25 +324,29 @@ class _DailySuccessPlannerPageWidgetState
                                               Text(
                                                 rowQuarterlyGoalsRecord.label,
                                                 textAlign: TextAlign.center,
-                                                style: FlutterFlowTheme
-                                                    .subtitle2
-                                                    .override(
-                                                  fontFamily: 'Poppins',
-                                                  color: FlutterFlowTheme
-                                                      .tertiaryColor,
-                                                  fontSize: 8,
-                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiaryColor,
+                                                          fontSize: 8,
+                                                        ),
                                               ),
                                               Text(
                                                 rowQuarterlyGoalsRecord.goals,
-                                                style: FlutterFlowTheme
-                                                    .bodyText1
-                                                    .override(
-                                                  fontFamily: 'Poppins',
-                                                  color: FlutterFlowTheme
-                                                      .tertiaryColor,
-                                                  fontSize: 10,
-                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiaryColor,
+                                                          fontSize: 10,
+                                                        ),
                                               ),
                                             ],
                                           ),
@@ -350,7 +363,7 @@ class _DailySuccessPlannerPageWidgetState
                       Container(
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.tertiaryColor,
+                          color: FlutterFlowTheme.of(context).tertiaryColor,
                         ),
                         child: InkWell(
                           onTap: () async {
@@ -385,19 +398,24 @@ class _DailySuccessPlannerPageWidgetState
                                 children: [
                                   Text(
                                     'GRATEFUL FOR',
-                                    style: FlutterFlowTheme.subtitle1.override(
-                                      fontFamily: 'Poppins',
-                                      color: FlutterFlowTheme.tertiaryColor,
-                                      fontSize: 14,
-                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .subtitle1
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiaryColor,
+                                          fontSize: 14,
+                                        ),
                                   ),
                                   Text(
                                     dailySuccessPlannerPageDailySuccessPlannerRecord
                                         .gratefulFor,
-                                    style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 12,
-                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 12,
+                                        ),
                                   ),
                                 ],
                               ),
@@ -410,12 +428,15 @@ class _DailySuccessPlannerPageWidgetState
                         child: Text(
                           'TARGETS: Targets are designed to get you closer to achieving your goals',
                           textAlign: TextAlign.center,
-                          style: FlutterFlowTheme.bodyText2.override(
-                            fontFamily: 'Poppins',
-                            color: FlutterFlowTheme.primaryColor,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText2
+                              .override(
+                                fontFamily: 'Poppins',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
                         ),
                       ),
                       Column(
@@ -469,7 +490,7 @@ class _DailySuccessPlannerPageWidgetState
                                 Text(
                                   dailySuccessPlannerPageDailySuccessPlannerRecord
                                       .targetDetail01,
-                                  style: FlutterFlowTheme.bodyText1,
+                                  style: FlutterFlowTheme.of(context).bodyText1,
                                 ),
                               ],
                             ),
@@ -522,7 +543,7 @@ class _DailySuccessPlannerPageWidgetState
                                 Text(
                                   dailySuccessPlannerPageDailySuccessPlannerRecord
                                       .targetDetail02,
-                                  style: FlutterFlowTheme.bodyText1,
+                                  style: FlutterFlowTheme.of(context).bodyText1,
                                 ),
                               ],
                             ),
@@ -575,7 +596,7 @@ class _DailySuccessPlannerPageWidgetState
                                 Text(
                                   dailySuccessPlannerPageDailySuccessPlannerRecord
                                       .targetDetail03,
-                                  style: FlutterFlowTheme.bodyText1,
+                                  style: FlutterFlowTheme.of(context).bodyText1,
                                 ),
                               ],
                             ),
@@ -628,7 +649,7 @@ class _DailySuccessPlannerPageWidgetState
                                 Text(
                                   dailySuccessPlannerPageDailySuccessPlannerRecord
                                       .targetDetail04,
-                                  style: FlutterFlowTheme.bodyText1,
+                                  style: FlutterFlowTheme.of(context).bodyText1,
                                 ),
                               ],
                             ),
@@ -681,7 +702,7 @@ class _DailySuccessPlannerPageWidgetState
                                 Text(
                                   dailySuccessPlannerPageDailySuccessPlannerRecord
                                       .targetDetail05,
-                                  style: FlutterFlowTheme.bodyText1,
+                                  style: FlutterFlowTheme.of(context).bodyText1,
                                 ),
                               ],
                             ),
@@ -693,12 +714,15 @@ class _DailySuccessPlannerPageWidgetState
                         child: Text(
                           'TODAYS PLAN',
                           textAlign: TextAlign.center,
-                          style: FlutterFlowTheme.bodyText2.override(
-                            fontFamily: 'Poppins',
-                            color: FlutterFlowTheme.primaryColor,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText2
+                              .override(
+                                fontFamily: 'Poppins',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
                         ),
                       ),
                       Padding(
@@ -713,7 +737,7 @@ class _DailySuccessPlannerPageWidgetState
                       Container(
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.tertiaryColor,
+                          color: FlutterFlowTheme.of(context).tertiaryColor,
                         ),
                         child: InkWell(
                           onTap: () async {
@@ -748,19 +772,24 @@ class _DailySuccessPlannerPageWidgetState
                                 children: [
                                   Text(
                                     'I THANK GOD FOR',
-                                    style: FlutterFlowTheme.subtitle1.override(
-                                      fontFamily: 'Poppins',
-                                      color: FlutterFlowTheme.tertiaryColor,
-                                      fontSize: 14,
-                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .subtitle1
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiaryColor,
+                                          fontSize: 14,
+                                        ),
                                   ),
                                   Text(
                                     dailySuccessPlannerPageDailySuccessPlannerRecord
                                         .iThankGodFor,
-                                    style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 12,
-                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 12,
+                                        ),
                                   ),
                                 ],
                               ),
@@ -771,7 +800,7 @@ class _DailySuccessPlannerPageWidgetState
                       Container(
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.tertiaryColor,
+                          color: FlutterFlowTheme.of(context).tertiaryColor,
                         ),
                         child: InkWell(
                           onTap: () async {
@@ -806,19 +835,24 @@ class _DailySuccessPlannerPageWidgetState
                                 children: [
                                   Text(
                                     'DAILY AFFIRMATION',
-                                    style: FlutterFlowTheme.subtitle1.override(
-                                      fontFamily: 'Poppins',
-                                      color: FlutterFlowTheme.tertiaryColor,
-                                      fontSize: 14,
-                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .subtitle1
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiaryColor,
+                                          fontSize: 14,
+                                        ),
                                   ),
                                   Text(
                                     dailySuccessPlannerPageDailySuccessPlannerRecord
                                         .gratefulFor,
-                                    style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 12,
-                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 12,
+                                        ),
                                   ),
                                 ],
                               ),
@@ -829,7 +863,7 @@ class _DailySuccessPlannerPageWidgetState
                       Container(
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.tertiaryColor,
+                          color: FlutterFlowTheme.of(context).tertiaryColor,
                         ),
                         child: Card(
                           clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -852,13 +886,15 @@ class _DailySuccessPlannerPageWidgetState
                                   children: [
                                     Text(
                                       'DID YOU WIN THE DAY?',
-                                      style:
-                                          FlutterFlowTheme.subtitle1.override(
-                                        fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.tertiaryColor,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .subtitle1
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: FlutterFlowTheme.of(context)
+                                                .tertiaryColor,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                     ),
                                     ToggleIcon(
                                       onPressed: () async {
@@ -878,12 +914,14 @@ class _DailySuccessPlannerPageWidgetState
                                               .didWinTheDay,
                                       onIcon: Icon(
                                         Icons.check_box,
-                                        color: FlutterFlowTheme.tertiaryColor,
+                                        color: FlutterFlowTheme.of(context)
+                                            .tertiaryColor,
                                         size: 20,
                                       ),
                                       offIcon: Icon(
                                         Icons.check_box_outline_blank,
-                                        color: FlutterFlowTheme.tertiaryColor,
+                                        color: FlutterFlowTheme.of(context)
+                                            .tertiaryColor,
                                         size: 25,
                                       ),
                                     ),
@@ -892,11 +930,13 @@ class _DailySuccessPlannerPageWidgetState
                                 Text(
                                   'Answer yes only if you  1. Write down your goal 2. Rewrote your quarterly goal  3. Completed all your targets',
                                   textAlign: TextAlign.center,
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Poppins',
-                                    color: Color(0xFFF5F5F5),
-                                    fontSize: 8,
-                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Color(0xFFF5F5F5),
+                                        fontSize: 8,
+                                      ),
                                 ),
                               ],
                             ),

@@ -2,6 +2,7 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class BookListWidget extends StatefulWidget {
@@ -19,13 +20,13 @@ class _BookListWidgetState extends State<BookListWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.primaryColor,
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         automaticallyImplyLeading: true,
         actions: [],
         centerTitle: true,
         elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -34,11 +35,11 @@ class _BookListWidgetState extends State<BookListWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
               child: Text(
                 'FGM/B TOP BOOK RECOMMENDATION',
-                style: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Poppins',
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: FlutterFlowTheme.of(context).bodyText1.override(
+                      fontFamily: 'Poppins',
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
               ),
             ),
             Expanded(
@@ -51,8 +52,9 @@ class _BookListWidgetState extends State<BookListWidget> {
                       child: SizedBox(
                         width: 50,
                         height: 50,
-                        child: CircularProgressIndicator(
-                          color: FlutterFlowTheme.primaryColor,
+                        child: SpinKitDoubleBounce(
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          size: 50,
                         ),
                       ),
                     );
@@ -72,7 +74,7 @@ class _BookListWidgetState extends State<BookListWidget> {
                         child: Container(
                           width: 100,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.tertiaryColor,
+                            color: FlutterFlowTheme.of(context).tertiaryColor,
                           ),
                           child: Padding(
                             padding:
@@ -87,11 +89,14 @@ class _BookListWidgetState extends State<BookListWidget> {
                                       10, 0, 0, 0),
                                   child: Text(
                                     listViewBooksRecord.bookName,
-                                    style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      color: FlutterFlowTheme.primaryColor,
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                   ),
                                 ),
                                 Padding(
@@ -99,7 +104,8 @@ class _BookListWidgetState extends State<BookListWidget> {
                                       10, 0, 0, 0),
                                   child: Text(
                                     listViewBooksRecord.bookAuthor,
-                                    style: FlutterFlowTheme.bodyText1,
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyText1,
                                   ),
                                 ),
                               ],
@@ -117,7 +123,7 @@ class _BookListWidgetState extends State<BookListWidget> {
               child: Container(
                 height: 35,
                 decoration: BoxDecoration(
-                  color: FlutterFlowTheme.tertiaryColor,
+                  color: FlutterFlowTheme.of(context).tertiaryColor,
                 ),
                 child: Image.asset(
                   'assets/images/FGM_B_Text.jpg',

@@ -31,6 +31,7 @@ class FlutterFlowRadioButton extends StatefulWidget {
   const FlutterFlowRadioButton({
     @required this.options,
     @required this.onChanged,
+    this.initialValue,
     this.optionHeight,
     this.textStyle,
     this.selectedTextStyle,
@@ -46,6 +47,7 @@ class FlutterFlowRadioButton extends StatefulWidget {
 
   final List<String> options;
   final Function(String) onChanged;
+  final String initialValue;
   final double optionHeight;
   final TextStyle textStyle;
   final TextStyle selectedTextStyle;
@@ -69,7 +71,7 @@ class _FlutterFlowRadioButtonState extends State<FlutterFlowRadioButton> {
 
   @override
   void initState() {
-    groupValue = effectiveOptions.first;
+    groupValue = widget.initialValue;
     super.initState();
   }
 

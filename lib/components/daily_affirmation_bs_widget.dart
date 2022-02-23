@@ -6,6 +6,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DailyAffirmationBsWidget extends StatefulWidget {
@@ -50,8 +51,9 @@ class _DailyAffirmationBsWidgetState extends State<DailyAffirmationBsWidget> {
                 child: SizedBox(
                   width: 50,
                   height: 50,
-                  child: CircularProgressIndicator(
-                    color: FlutterFlowTheme.primaryColor,
+                  child: SpinKitDoubleBounce(
+                    color: FlutterFlowTheme.of(context).primaryColor,
+                    size: 50,
                   ),
                 ),
               );
@@ -77,16 +79,17 @@ class _DailyAffirmationBsWidgetState extends State<DailyAffirmationBsWidget> {
                           ),
                           Text(
                             'Daily Affirmation',
-                            style: FlutterFlowTheme.title3.override(
-                              fontFamily: 'Poppins',
-                              color: FlutterFlowTheme.primaryColor,
-                            ),
+                            style: FlutterFlowTheme.of(context).title3.override(
+                                  fontFamily: 'Poppins',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                ),
                           ),
                           Container(
                             width: MediaQuery.of(context).size.width,
                             height: MediaQuery.of(context).size.height * 0.2,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.tertiaryColor,
+                              color: FlutterFlowTheme.of(context).tertiaryColor,
                             ),
                             child: TextFormField(
                               onChanged: (_) => EasyDebounce.debounce(
@@ -112,17 +115,19 @@ class _DailyAffirmationBsWidgetState extends State<DailyAffirmationBsWidget> {
                                         ),
                                         child: Icon(
                                           Icons.clear,
-                                          color:
-                                              FlutterFlowTheme.secondaryColor,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryColor,
                                           size: 20,
                                         ),
                                       )
                                     : null,
                               ),
-                              style: FlutterFlowTheme.bodyText1.override(
-                                fontFamily: 'Poppins',
-                                fontSize: 12,
-                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 12,
+                                  ),
                               keyboardType: TextInputType.multiline,
                             ),
                           ),
@@ -142,12 +147,13 @@ class _DailyAffirmationBsWidgetState extends State<DailyAffirmationBsWidget> {
                                     width: 150,
                                     height: 50,
                                     color: Color(0xFF57636C),
-                                    textStyle:
-                                        FlutterFlowTheme.subtitle2.override(
-                                      fontFamily: 'Poppins',
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                    ),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                        ),
                                     elevation: 2,
                                     borderSide: BorderSide(
                                       color: Colors.transparent,
@@ -172,13 +178,15 @@ class _DailyAffirmationBsWidgetState extends State<DailyAffirmationBsWidget> {
                                   options: FFButtonOptions(
                                     width: 150,
                                     height: 50,
-                                    color: FlutterFlowTheme.primaryColor,
-                                    textStyle:
-                                        FlutterFlowTheme.subtitle2.override(
-                                      fontFamily: 'Poppins',
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                    ),
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                        ),
                                     elevation: 2,
                                     borderSide: BorderSide(
                                       color: Colors.transparent,

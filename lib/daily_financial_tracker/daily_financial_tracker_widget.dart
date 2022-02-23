@@ -8,6 +8,7 @@ import '../main.dart';
 import '../weekly_allocation/weekly_allocation_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DailyFinancialTrackerWidget extends StatefulWidget {
@@ -38,8 +39,9 @@ class _DailyFinancialTrackerWidgetState
             child: SizedBox(
               width: 50,
               height: 50,
-              child: CircularProgressIndicator(
-                color: FlutterFlowTheme.primaryColor,
+              child: SpinKitDoubleBounce(
+                color: FlutterFlowTheme.of(context).primaryColor,
+                size: 50,
               ),
             ),
           );
@@ -66,7 +68,7 @@ class _DailyFinancialTrackerWidgetState
                 ),
               );
             },
-            backgroundColor: FlutterFlowTheme.primaryColor,
+            backgroundColor: FlutterFlowTheme.of(context).primaryColor,
             elevation: 8,
             child: Icon(
               Icons.add,
@@ -88,7 +90,7 @@ class _DailyFinancialTrackerWidgetState
                         width: MediaQuery.of(context).size.width,
                         height: 82,
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.primaryColor,
+                          color: FlutterFlowTheme.of(context).primaryColor,
                         ),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 34, 0, 0),
@@ -103,12 +105,15 @@ class _DailyFinancialTrackerWidgetState
                                   AutoSizeText(
                                     'Daily Expense Tracker',
                                     textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.title1.override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: FlutterFlowTheme.tertiaryColor,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .title1
+                                        .override(
+                                          fontFamily: 'Lexend Deca',
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiaryColor,
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                   ),
                                   FlutterFlowIconButton(
                                     borderColor: Colors.transparent,
@@ -117,7 +122,8 @@ class _DailyFinancialTrackerWidgetState
                                     buttonSize: 60,
                                     icon: Icon(
                                       Icons.close,
-                                      color: FlutterFlowTheme.tertiaryColor,
+                                      color: FlutterFlowTheme.of(context)
+                                          .tertiaryColor,
                                       size: 30,
                                     ),
                                     onPressed: () async {
@@ -154,7 +160,7 @@ class _DailyFinancialTrackerWidgetState
                                 EdgeInsetsDirectional.fromSTEB(16, 8, 0, 12),
                             child: Text(
                               'January 01,  2022',
-                              style: FlutterFlowTheme.title3,
+                              style: FlutterFlowTheme.of(context).title3,
                             ),
                           ),
                         ],
@@ -195,14 +201,16 @@ class _DailyFinancialTrackerWidgetState
                                             Expanded(
                                               child: Text(
                                                 'Starting Balance',
-                                                style: FlutterFlowTheme
+                                                style: FlutterFlowTheme.of(
+                                                        context)
                                                     .bodyText2
                                                     .override(
-                                                  fontFamily: 'Lexend Deca',
-                                                  color: Color(0xFF8B97A2),
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
+                                                      fontFamily: 'Lexend Deca',
+                                                      color: Color(0xFF8B97A2),
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
                                               ),
                                             ),
                                           ],
@@ -224,14 +232,17 @@ class _DailyFinancialTrackerWidgetState
                                                     DecimalType.periodDecimal,
                                                 currency: '\$',
                                               ),
-                                              style: FlutterFlowTheme.title2
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .title2
                                                   .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: FlutterFlowTheme
-                                                    .primaryColor,
-                                                fontSize: 22,
-                                                fontWeight: FontWeight.w500,
-                                              ),
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryColor,
+                                                    fontSize: 22,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
                                             ),
                                           ),
                                         ],
@@ -261,13 +272,15 @@ class _DailyFinancialTrackerWidgetState
                                           Expanded(
                                             child: Text(
                                               'Total Spending',
-                                              style: FlutterFlowTheme.bodyText2
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText2
                                                   .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Color(0xFF8B97A2),
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w500,
-                                              ),
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF8B97A2),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
                                             ),
                                           ),
                                         ],
@@ -289,14 +302,16 @@ class _DailyFinancialTrackerWidgetState
                                                   DecimalType.periodDecimal,
                                               currency: '\$',
                                             ),
-                                            style: FlutterFlowTheme.title2
+                                            style: FlutterFlowTheme.of(context)
+                                                .title2
                                                 .override(
-                                              fontFamily: 'Lexend Deca',
-                                              color: FlutterFlowTheme
-                                                  .secondaryColor,
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.w500,
-                                            ),
+                                                  fontFamily: 'Lexend Deca',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryColor,
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
                                           ),
                                         ),
                                       ],
@@ -337,14 +352,16 @@ class _DailyFinancialTrackerWidgetState
                                             Expanded(
                                               child: Text(
                                                 'Total',
-                                                style: FlutterFlowTheme
+                                                style: FlutterFlowTheme.of(
+                                                        context)
                                                     .bodyText2
                                                     .override(
-                                                  fontFamily: 'Lexend Deca',
-                                                  color: Color(0xFF8B97A2),
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
+                                                      fontFamily: 'Lexend Deca',
+                                                      color: Color(0xFF8B97A2),
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
                                               ),
                                             ),
                                           ],
@@ -361,13 +378,15 @@ class _DailyFinancialTrackerWidgetState
                                               dailyFinancialTrackerDailyExpenseTrackerRecord
                                                   .total
                                                   .toString(),
-                                              style: FlutterFlowTheme.title2
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .title2
                                                   .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Color(0xFF4B39EF),
-                                                fontSize: 22,
-                                                fontWeight: FontWeight.w500,
-                                              ),
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF4B39EF),
+                                                    fontSize: 22,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
                                             ),
                                           ),
                                         ],
@@ -397,13 +416,15 @@ class _DailyFinancialTrackerWidgetState
                                           Expanded(
                                             child: Text(
                                               'Wants',
-                                              style: FlutterFlowTheme.bodyText2
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText2
                                                   .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Color(0xFF8B97A2),
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w500,
-                                              ),
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF8B97A2),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
                                             ),
                                           ),
                                         ],
@@ -420,13 +441,14 @@ class _DailyFinancialTrackerWidgetState
                                             dailyFinancialTrackerDailyExpenseTrackerRecord
                                                 .noOfWants
                                                 .toString(),
-                                            style: FlutterFlowTheme.title2
+                                            style: FlutterFlowTheme.of(context)
+                                                .title2
                                                 .override(
-                                              fontFamily: 'Lexend Deca',
-                                              color: Color(0xFF3BC821),
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.w500,
-                                            ),
+                                                  fontFamily: 'Lexend Deca',
+                                                  color: Color(0xFF3BC821),
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
                                           ),
                                         ),
                                       ],
@@ -455,13 +477,15 @@ class _DailyFinancialTrackerWidgetState
                                           Expanded(
                                             child: Text(
                                               'Needs',
-                                              style: FlutterFlowTheme.bodyText2
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText2
                                                   .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Color(0xFF8B97A2),
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w500,
-                                              ),
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF8B97A2),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
                                             ),
                                           ),
                                         ],
@@ -477,13 +501,14 @@ class _DailyFinancialTrackerWidgetState
                                           child: Text(
                                             dailyFinancialTrackerDailyExpenseTrackerRecord
                                                 .noOfNeeds,
-                                            style: FlutterFlowTheme.title2
+                                            style: FlutterFlowTheme.of(context)
+                                                .title2
                                                 .override(
-                                              fontFamily: 'Lexend Deca',
-                                              color: Color(0xFF4B39EF),
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.w500,
-                                            ),
+                                                  fontFamily: 'Lexend Deca',
+                                                  color: Color(0xFF4B39EF),
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
                                           ),
                                         ),
                                       ],
@@ -521,13 +546,15 @@ class _DailyFinancialTrackerWidgetState
                                           Expanded(
                                             child: Text(
                                               'Spending Wants',
-                                              style: FlutterFlowTheme.bodyText2
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText2
                                                   .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Color(0xFF8B97A2),
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w500,
-                                              ),
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF8B97A2),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
                                             ),
                                           ),
                                         ],
@@ -549,13 +576,14 @@ class _DailyFinancialTrackerWidgetState
                                                   DecimalType.periodDecimal,
                                               currency: '\$',
                                             ),
-                                            style: FlutterFlowTheme.title2
+                                            style: FlutterFlowTheme.of(context)
+                                                .title2
                                                 .override(
-                                              fontFamily: 'Lexend Deca',
-                                              color: Color(0xFF4B39EF),
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.w500,
-                                            ),
+                                                  fontFamily: 'Lexend Deca',
+                                                  color: Color(0xFF4B39EF),
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
                                           ),
                                         ),
                                       ],
@@ -584,13 +612,15 @@ class _DailyFinancialTrackerWidgetState
                                           Expanded(
                                             child: Text(
                                               'Spending Needs',
-                                              style: FlutterFlowTheme.bodyText2
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText2
                                                   .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Color(0xFF8B97A2),
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w500,
-                                              ),
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF8B97A2),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
                                             ),
                                           ),
                                         ],
@@ -612,13 +642,14 @@ class _DailyFinancialTrackerWidgetState
                                                   DecimalType.periodDecimal,
                                               currency: '\$',
                                             ),
-                                            style: FlutterFlowTheme.title2
+                                            style: FlutterFlowTheme.of(context)
+                                                .title2
                                                 .override(
-                                              fontFamily: 'Lexend Deca',
-                                              color: Color(0xFF3BC821),
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.w500,
-                                            ),
+                                                  fontFamily: 'Lexend Deca',
+                                                  color: Color(0xFF3BC821),
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
                                           ),
                                         ),
                                       ],
@@ -647,13 +678,15 @@ class _DailyFinancialTrackerWidgetState
                                           Expanded(
                                             child: Text(
                                               'End of the Day Balance',
-                                              style: FlutterFlowTheme.bodyText2
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText2
                                                   .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Color(0xFF8B97A2),
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w500,
-                                              ),
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF8B97A2),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
                                             ),
                                           ),
                                         ],
@@ -675,13 +708,14 @@ class _DailyFinancialTrackerWidgetState
                                                   DecimalType.periodDecimal,
                                               currency: '\$',
                                             ),
-                                            style: FlutterFlowTheme.title2
+                                            style: FlutterFlowTheme.of(context)
+                                                .title2
                                                 .override(
-                                              fontFamily: 'Lexend Deca',
-                                              color: Color(0xFF4B39EF),
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.w500,
-                                            ),
+                                                  fontFamily: 'Lexend Deca',
+                                                  color: Color(0xFF4B39EF),
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
                                           ),
                                         ),
                                       ],
@@ -698,7 +732,7 @@ class _DailyFinancialTrackerWidgetState
                         child: AutoSizeText(
                           'I commit to spending more of my income on needs than wants.',
                           textAlign: TextAlign.center,
-                          style: FlutterFlowTheme.bodyText1,
+                          style: FlutterFlowTheme.of(context).bodyText1,
                         ),
                       ),
                       Padding(
@@ -721,8 +755,10 @@ class _DailyFinancialTrackerWidgetState
                                   child: SizedBox(
                                     width: 50,
                                     height: 50,
-                                    child: CircularProgressIndicator(
-                                      color: FlutterFlowTheme.primaryColor,
+                                    child: SpinKitDoubleBounce(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      size: 50,
                                     ),
                                   ),
                                 );
@@ -776,8 +812,10 @@ class _DailyFinancialTrackerWidgetState
                                                     Text(
                                                       listViewFinancialPlannerRecord
                                                           .description,
-                                                      style: FlutterFlowTheme
-                                                          .bodyText1,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
                                                     ),
                                                     Text(
                                                       formatNumber(
@@ -789,13 +827,16 @@ class _DailyFinancialTrackerWidgetState
                                                             .periodDecimal,
                                                         currency: '\$',
                                                       ),
-                                                      style: FlutterFlowTheme
-                                                          .bodyText1
-                                                          .override(
-                                                        fontFamily: 'Poppins',
-                                                        color:
-                                                            Color(0xFFCFB53B),
-                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                color: Color(
+                                                                    0xFFCFB53B),
+                                                              ),
                                                     ),
                                                   ],
                                                 ),
@@ -807,7 +848,9 @@ class _DailyFinancialTrackerWidgetState
                                                   listViewFinancialPlannerRecord
                                                       .date),
                                               textAlign: TextAlign.end,
-                                              style: FlutterFlowTheme.bodyText1,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1,
                                             ),
                                           ],
                                         ),

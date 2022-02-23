@@ -7,6 +7,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../custom_code/actions/index.dart' as actions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DailySuccessPlannerWidget extends StatefulWidget {
@@ -24,7 +25,7 @@ class _DailySuccessPlannerWidgetState extends State<DailySuccessPlannerWidget> {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.3,
       decoration: BoxDecoration(
-        color: FlutterFlowTheme.tertiaryColor,
+        color: FlutterFlowTheme.of(context).tertiaryColor,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -34,7 +35,7 @@ class _DailySuccessPlannerWidgetState extends State<DailySuccessPlannerWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
             child: Text(
               'Subscribe Now!',
-              style: FlutterFlowTheme.title1,
+              style: FlutterFlowTheme.of(context).title1,
             ),
           ),
           Padding(
@@ -42,7 +43,7 @@ class _DailySuccessPlannerWidgetState extends State<DailySuccessPlannerWidget> {
             child: Text(
               'Subscribe to Daily Success Planner',
               textAlign: TextAlign.center,
-              style: FlutterFlowTheme.title3,
+              style: FlutterFlowTheme.of(context).title3,
             ),
           ),
           Row(
@@ -58,10 +59,10 @@ class _DailySuccessPlannerWidgetState extends State<DailySuccessPlannerWidget> {
                   width: 130,
                   height: 40,
                   color: Color(0xFFF5F5F5),
-                  textStyle: FlutterFlowTheme.subtitle2.override(
-                    fontFamily: 'Poppins',
-                    color: Color(0xFFCFB53B),
-                  ),
+                  textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                        fontFamily: 'Poppins',
+                        color: Color(0xFFCFB53B),
+                      ),
                   borderSide: BorderSide(
                     color: Colors.transparent,
                     width: 1,
@@ -100,11 +101,11 @@ class _DailySuccessPlannerWidgetState extends State<DailySuccessPlannerWidget> {
                 options: FFButtonOptions(
                   width: 130,
                   height: 40,
-                  color: FlutterFlowTheme.primaryColor,
-                  textStyle: FlutterFlowTheme.subtitle2.override(
-                    fontFamily: 'Poppins',
-                    color: Colors.white,
-                  ),
+                  color: FlutterFlowTheme.of(context).primaryColor,
+                  textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                        fontFamily: 'Poppins',
+                        color: Colors.white,
+                      ),
                   borderSide: BorderSide(
                     color: Colors.transparent,
                     width: 1,
